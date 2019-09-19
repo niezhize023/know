@@ -14,25 +14,27 @@
 // @ is an alias to /src
 /* import HelloWorld from '@/components/HelloWorld.vue' */
 
-export default {};
+export default {
+    
+};
 </script>
 
 <style>
-  .center{
+.center {
     width: 1000px;
     margin: 0 auto;
-  }
-  .el-aside {
-    background-color: #D3DCE6;
+}
+.el-aside {
+    background-color: #d3dce6;
     color: #333;
     text-align: center;
     line-height: 200px;
-  }
-  
-  .el-main {
-    background-color: #E9EEF3;
+}
+
+.el-main {
+    background-color: #e9eef3;
     color: #333;
     text-align: center;
     line-height: 160px;
-  }
+}
 </style>

@@ -13,6 +13,8 @@ Vue.component("top-menu", TopMenu)
 
 //定义全局axios 的公用服务端口
 axios.defaults.baseURL = "http://localhost:81";
+axios.defaults.withCredentials=true
+axios.defaults.headers.post['Content-Type'] = "application/x-www-form-urlencoded";
 //向原型上追加通用方法
 Vue.prototype.axios = axios;
 

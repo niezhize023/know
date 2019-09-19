@@ -4,6 +4,8 @@ import Home from './views/Home.vue'
 import Recommend from './views/Recommend.vue'
 import Follow from './views/Follow.vue'
 import Hot from './views/Hot.vue'
+import Topicinfo from './views/Topicinfo.vue'
+import Avatar from './views/Avatar.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -15,12 +17,21 @@ export default new Router({
       component: Home
     },
     {
+      path: '/avatar',
+      name: 'avatar',
+      component: Avatar
+    },
+    {
       path: '/recommend',
       component: Recommend
     },
     {
       path: '/follow',
       component: Follow
+    },
+    {
+      path: '/topicinfo',
+      component: Topicinfo
     },
     {
       path: '/hot',

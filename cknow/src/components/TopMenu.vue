@@ -86,6 +86,7 @@ export default {
 }
 .top{
     border-bottom: 1px solid #ccc;
+    background-color: white;
 }
 .el-menu-demo {
     width: 1000px;
