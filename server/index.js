@@ -16,7 +16,8 @@ app.use(bodyParser.json());
 app.use('/user', require('./Controller/UserController'));
 app.use('/topic', require('./Controller/TopicController'));
 app.use("/backstage",require("./Controller/BackstageController"))
-
+app.use("/upload",require("./Controller/UploadController"))
+app.use('/uploads',express.static(__dirname+'/uploads'));
 app.listen(81, () => {
     console.log('Example app listening on port 81!');
 });

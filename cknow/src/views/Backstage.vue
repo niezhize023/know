@@ -72,18 +72,19 @@
       fixed
       prop="uid"
       label="用户"
-      width="50">
+      width="50"
+      >
     </el-table-column>
     <el-table-column
       prop="title"
       label="标题"
       width="180"
-      >
+    >
     </el-table-column>
     <el-table-column
       prop="content"
       label="内容"
-      width="120">
+      width="420">
     </el-table-column>
     <el-table-column
       prop="imgs"
@@ -93,17 +94,17 @@
     <el-table-column
       prop="like"
       label="点赞数"
-      width="300">
+      width="70">
     </el-table-column>
     <el-table-column
       prop="comment"
       label="评论数"
-      width="120">
+      width="70">
     </el-table-column>
     <el-table-column
       prop="collection"
       label="收藏数"
-      width="120">
+      width="70">
     </el-table-column>
     <el-table-column
       prop="time"
@@ -113,7 +114,7 @@
     <el-table-column
       fixed="right"
       label="操作"
-      width="120">
+      width="80">
       <template slot-scope="scope">
         <el-button
           @click.native.prevent="deleteRow(scope.$index, tableData4)"

@@ -1,12 +1,26 @@
 <template>
+<div>
    <div id="wangeditor">
        <div class="top">
        <h1>写文章</h1></div>
-    <div ref="editorElem" style="text-align:left;"></div>
+ <input type="text" id="input" placeholder="请输入标题(最多50个字)">
+<!-- <textarea name="" id="text"> -->
+    <div ref="editorElem" class="wangeditor"></div>
+    <!-- </textarea> -->
+  </div>
+  
+  <el-row>
+
+  <el-button type="primary" plain>发布文章</el-button>
+
+  <el-button type="info" plain>退出</el-button>
+
+</el-row>
   </div>
 </template>
 <script>
 import E from "wangeditor";
+
 export default {
   name: "Editor",
   data() {
@@ -20,10 +34,12 @@ export default {
   mounted() {
     this.editor = new E(this.$refs.editorElem);
     // 编辑器的事件，每次改变会获取其html内容
-    this.editor.customConfig.onchange = html => {
-      this.editorContent = html;
-      this.catchData(this.editorContent); // 把这个html通过catchData的方法传入父组件
-    };
+    // this.editor.customConfig.onchange = html => {
+    //   this.editorContent = html;
+    //   this.catchData(this.editorContent); 
+    //   // 把这个html通过catchData的方法传入父组件
+    // };
+
     this.editor.customConfig.menus = [
       // 菜单配置
       'head', // 标题
@@ -46,13 +62,20 @@ export default {
       'undo', // 撤销
       'redo' // 重复
     ];
+    this.editor.customConfig.uploadImgServer = 'http://localhost:81/upload/img'
+    this.editor.customConfig.uploadImgParamsWithUrl = true
+    this.editor.customConfig.uploadFileName = 'imgs'
     this.editor.create(); // 创建富文本实例
+
+
   }
+ 
+  
 }
 </script>
 <style>
 html{
-    width: 1200px;
+    width: 1000px;
     /* height: 350px; */
     margin: auto
 }
@@ -62,6 +85,15 @@ html{
         text-align: center;
         line-height: 80px;
 
+    }
+    #input{
+      width: 1000px;
+      height: 100px;
+      font-size: 30px
+    }
+    #wangeditor{
+       width: 1000px;
+       margin: auto;
     }
 </style>
 
