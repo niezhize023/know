@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 //启用子路由
 app.use('/user', require('./Controller/UserController'));
 app.use('/topic', require('./Controller/TopicController'));
+app.use("/backstage",require("./Controller/BackstageController"))
 
 app.listen(81, () => {
     console.log('Example app listening on port 81!');

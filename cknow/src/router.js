@@ -4,6 +4,14 @@ import Home from './views/Home.vue'
 import Recommend from './views/Recommend.vue'
 import Follow from './views/Follow.vue'
 import Hot from './views/Hot.vue'
+import Admin from './views/Admin.vue'
+import Reg from './views/Reg.vue'
+import Login from './views/Login.vue'
+import Write from './views/Write.vue'
+import Backstage from './views/Backstage.vue'
+
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -13,6 +21,31 @@ export default new Router({
     {
       path: '/',
       component: Home
+    },
+    {
+      path: '/admin',
+      name:"admin",
+      component: Admin
+    },
+    {
+      path: '/backstage',
+      name:"backstage",
+      component: Backstage
+    },
+    {
+      path: '/reg',
+      name:"reg",
+      component: Reg
+    },
+    {
+      path: '/login',
+      name:"login",
+      component: Login
+    },
+    {
+      path: '/write',
+      name:"write",
+      component: Write
     },
     {
       path: '/recommend',

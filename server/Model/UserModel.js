@@ -1,30 +1,71 @@
-const DbBase  = require('./DbBase');
-class UserModel extends DbBase{
-    constructor(){
-        super();
-        this.table = 'users';
-    }
-    selectuser(username,callback){
-        let sql = `SELECT * FROM ${this.table} WHERE username='${username}' `
-        this.mydb.query(sql,(err,result)=>{
-            if(err){
-                console.log(err)
-                return ;
-            }else{
-                callback(result)
+const mysql = require('mysql')
+const DbBase = require('./DbBase');
+class UserModel extends DbBase {
+    login(name, passwd, cb) {
+        let sql = 'select * from users where nickname=? and password=?'
+        this.mydb.query(sql, [name, passwd], (err, results) => {
+            // console.log(results)
+            // cb(results)
+            let ob = {
+                code: 1,
+                resu: []
+            };
+            // if(passwd==results[0].passwd){
+
+            // }
+
+            if (err) {
+                ob.code = -1;
+                // console.log(err);
+            } else {
+                ob.resu = results;
+
             }
+            console.log(ob)
+
+            cb(ob);
         })
+
     }
-    adduser(username,passw,callback){
-        let asql = `INSERT INTO ${this.table}(username,passwd) VALUES ('${username}','${passw}')`;
-        this.mydb.query(asql,(err,result)=>{
-            if(err){
-                console.log(err)
-                return ;
-            }else{
-                callback(result)
+    registe(name, passwd, cb) {
+        let sql = 'insert into users (nickname,password) values (?,?)'
+        this.mydb.query(sql, [name, passwd], (err, results) => {
+
+            let ob = {
+                code: 1,
+                resu: []
+            };
+            if (err) {
+                ob.code = -1;
+            } else {
+                ob.resu = results;
             }
+            cb(ob);
         })
-    } 
+
+    }
+    admin(name, passwd, cb) {
+        let sql = 'select * from admin where username=? and password=?'
+        this.mydb.query(sql, [name, passwd], (err, results) => {
+            let ob = {
+                code: 1,
+                resu: []
+            };
+            if (err) {
+                ob.code = -1;
+            } else {
+                ob.resu = results;
+
+            }
+            console.log(ob)
+
+            cb(ob);
+        })
+
+    }
+
+
 }
-module.exports = UserModel;
+
+
+module.exports = UserModel
