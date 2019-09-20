@@ -76,6 +76,11 @@
       >
     </el-table-column>
     <el-table-column
+      prop="imgs"
+      label="图片"
+      width="120">
+    </el-table-column>
+    <el-table-column
       prop="title"
       label="标题"
       width="180"
@@ -86,11 +91,7 @@
       label="内容"
       width="420">
     </el-table-column>
-    <el-table-column
-      prop="imgs"
-      label="图片"
-      width="120">
-    </el-table-column>
+    
     <el-table-column
       prop="like"
       label="点赞数"
@@ -137,18 +138,28 @@ export default {
         tableData4: [{
           uid: '',
           title: '',
-          content: '',
+          content: [],
           imgs: '',
           like: '',
           comment: '',
           collection:'',
-          time:''
-        }]
+          time:'',
+   
+        }],
+        arr:[]
       };
     },
     methods: {
-      //  getinfo(){
-      //  }
+       getinfo(){
+        //  var str=new RegExp()
+        // console.log(this.tableData4.content)
+      // var str=this.tableData4.content
+        
+        // str.replace("<.*?(?<=/>)","")
+        // this.tableData4.content=str
+//<(\S*?)[^>]*>.*?</>|<.*? />
+// this.tableData4.content=this.tableData4.content.replaceAll("<script.*?(?<=/script>)","")
+       },
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
       },
@@ -160,22 +171,32 @@ export default {
     }, 
     deleteRow(index, rows) {
         rows.splice(index, 1);
+        console.log(index)
       }
+
     },
     created() {
-      // this.getinfo()
+    
       this.axios.get('/backstage/info').then((response) => {
-      // console.log(response.data.re)
+        // console.log(response.data.re)
+        for(var i=0;i<response.data.re.length;i++){
+   
+         console.log(response.data.re[i].content)
+response.data.re[i].content
+        //  response.data.re[i].content
+       
+           
+          // this.arr.push(response.data.re[i].content)
+          
+
+
+        }
+        console.log(this.arr)
       this.tableData4=response.data.re
+   
+        this.getinfo()
+      
 })
-//  this.axios({
-//             method: "post",
-//             url: "/backstage/info",
-//           }).then(response => {
-//              console.log(response.data)
-//           }).catch(response => {
-//              console.log(response)
-//           })
     },
 
 }

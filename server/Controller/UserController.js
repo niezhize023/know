@@ -32,4 +32,12 @@ router.post("/admin",(req,res)=>{
     })
 })
 
+router.post("/write",(req,res)=>{
+    let title=req.body.title
+    let editorContent=req.body.editorContent
+    let userModel=new UserModel()
+    userModel.writearticle(title,editorContent,(ob)=>{
+        res.json(ob)
+    })
+})
 module.exports=router

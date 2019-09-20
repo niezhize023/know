@@ -63,6 +63,25 @@ class UserModel extends DbBase {
         })
 
     }
+    writearticle(title,editorContent,cb){
+        let sql = 'insert into topic(title,content) values (?,?)'
+        this.mydb.query(sql, [title,editorContent], (err, results) => {
+            let ob = {
+                code: 1,
+                resu: []
+            };
+            if (err) {
+                ob.code = -1;
+                console.log(err)
+            } else {
+                ob.resu = results;
+
+            }
+            console.log(ob)
+
+            cb(ob);
+        })
+    }
 
 
 }

@@ -1,29 +1,60 @@
 <template>
   <div class="reg">
-    <h1>用户注册</h1>
+    <div class="tt">
+   <span>用户注册</span>
+      <!-- <router-link to="/login" id="ll"><span>用户登录</span></router-link>
+    <router-view/> -->
+</div>
+
+<!-- <div class="big"> -->
     <el-form
       :model="ruleForm2"
       status-icon
       :rules="rules2"
       ref="ruleForm2"
       label-width="70px"
-      class="demo-ruleForm"
+      id="ff"
     >
+    <!-- <div prop="name">
+      <input type="text" v-model="ruleForm2.name"  placeholder="请输入账号"  class="input">
+    </div>
+    <div prop="password">
+      <input type="password" v-model="ruleForm2.pass"  placeholder="请输入账号"  class="input">
+    </div>
+    <div prop="checkPass">
+      <input type="password" v-model="ruleForm2.checkPass"  placeholder="请输入账号"  class="input">
+    </div>
+    <div prop="verification">
+      <input type="text" v-model="ruleForm2.name"  placeholder="请输入账号"  class="input">
+    </div> -->
       <el-form-item label="用户账号" prop="name">
-        <el-input v-model="ruleForm2.name"></el-input>
+        <el-input v-model="ruleForm2.name" class="input" placeholder="请输入账号">
+        </el-input>
       </el-form-item>
-      <el-form-item label="密码" prop="pass">
-        <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
+       <el-form-item label="密码" prop="pass">
+        <el-input  type="password" v-model="ruleForm2.pass" auto-complete="off"  placeholder="请输入密码"  class="input"></el-input>
       </el-form-item>
       <el-form-item label="确认密码" prop="checkPass">
-        <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
+        <el-input  type="password" v-model="ruleForm2.checkPass" auto-complete="off" placeholder="请确认密码"  class="input"></el-input>
       </el-form-item>
-
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm2')">注册</el-button>
-        <el-button @click="resetForm('ruleForm2')">重置</el-button>
+      <!-- <div class="verification"></div>
+  <el-form-item label="验证码" prop="checking">
+        <el-input v-model="ruleForm2.checking" placeholder="请输入验证码"  class="input"></el-input>
+      </el-form-item> -->
+      <el-form-item id="from">
+        <el-button type="primary" @click="submitForm('ruleForm2')" id="rreg">注册</el-button>
       </el-form-item>
+      <!-- </div> -->
     </el-form>
+    <div class="box">
+未注册手机验证后自动登录
+<br>
+注册即代表同意《知乎协议》《隐私保护指引》
+
+      </div>
+
+      <br>
+     <!-- <el-button plain class="app">下载app</el-button> -->
   </div>
 </template>
 
@@ -38,6 +69,7 @@ export default {
       else if (str.length < 2 || str.length > 16) {
         callback(new Error("用户账号为2-16位"));
       } else {
+          // if(this.name)
         callback();
       }
 
@@ -62,16 +94,29 @@ export default {
         callback();
       }
     };
+    //验证码
+    // var validatechecking = (rule, value, callback) => {
+    //   if (value === "") {
+    //     callback(new Error("请输入验证码"));
+    //   } else if (value !== this.ruleForm2.checking) {
+    //     callback(new Error("验证码错误请重新输入"));
+    //   } else {
+    //     callback();
+    //   }
+    // };
     return {
       ruleForm2: {
         pass: "",
         checkPass: "",
-        name: ""
+        name: "",
+        verification:"",
+  
       },
       rules2: {
         pass: [{ validator: validatePass, trigger: "blur" }],
         checkPass: [{ validator: validatePass2, trigger: "blur" }],
-        name: [{ validator: checkName, trigger: "blur" }]
+        name: [{ validator: checkName, trigger: "blur" }],
+       
       }
     };
   },
@@ -107,14 +152,113 @@ export default {
 };
 </script>
 <style>
+body{
+  /* position: absolute; */
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  /* background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568892768234&di=92b016e9e0adb8766966051bb7bb3432&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F14%2F29%2F47e58PICQUR_1024.jpg'); */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  
+}
 .reg {
-  /* background-color: red; */
+  background-color: white;
   width: 400px;
   height: 370px;
-  padding: 30px 67px 0 67px;
+  /* padding: auto; */
+  /* padding: 30px 67px 0 67px; */
   box-sizing: border-box;
   margin:100px auto;
+border-radius: 4px;
+box-shadow: rgb(179, 183, 194)
+  /* border: 2px solid red; */
+}
+.input{
+  width: 350px;
+  /* margin: 200px; */
+  height: 40px;
+  font-size: 16px;
+  /* border-top: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+border-bottom: 1px solid #DCDFE6; */
+}
+.big{
+  width: 100%;
+  height: auto;
+  /* background-color: red; */
 
-  border: 2px solid red;
+}
+
+#rreg{
+width: 350px;
+ padding-left: 20px;
+}
+#ff{
+  width: 300px;
+  margin: auto
+
+  
+}
+#ll{
+  color: #2C3E50;
+ height: 40px;
+ line-height: 40px;
+}
+#ll:hover{
+  color: #0084FF
+}
+#from{
+  width: 300px;
+ margin-left: -95px;
+
+ /* text-align: center; */
+}
+.box{
+  padding:15px 20px;
+  width:100%;
+  height: 70px;
+  box-sizing: border-box;
+  background-color: #F6F6F6;
+  color: #808080;
+  font-size: 14px;
+  text-align: left;
+  
+}
+
+.about{
+  width: 100%;
+  height: 50px;
+  background-color: red;
+}
+
+.about2{
+  width: 100%;
+  height: 50px;
+  background-color: red;
+}
+
+.tt{
+  width: 100%;
+  height:40px ;
+  float: left;
+text-align: center;
+line-height: 40px;
+font-size:25px;
+
+}
+span{
+  float: left;
+  width: 100%;
+}
+span:hover{
+  color: #0084FF;
+  cursor: pointer;
+}
+a:hover{
+  color: #0084FF;
+  cursor: pointer;
 }
 </style>

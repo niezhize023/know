@@ -3,7 +3,7 @@
    <div id="wangeditor">
        <div class="top">
        <h1>写文章</h1></div>
- <input type="text" id="input" placeholder="请输入标题(最多50个字)">
+ <input type="text" id="input" placeholder="请输入标题(最多50个字)" v-model="title">
 <!-- <textarea name="" id="text"> -->
     <div ref="editorElem" class="wangeditor"></div>
     <!-- </textarea> -->
@@ -11,9 +11,9 @@
   
   <el-row>
 
-  <el-button type="primary" plain>发布文章</el-button>
+  <el-button type="primary" plain @click="release">发布文章</el-button>
 
-  <el-button type="info" plain>退出</el-button>
+  <el-button type="info" plain @click="signout">退出</el-button>
 
 </el-row>
   </div>
@@ -26,19 +26,55 @@ export default {
   data() {
     return {
       editor: null,
-      editorContent: ''
+      editorContent: '',
+      title:""
     };
   },
+  methods: {
+    signout:function(){
+              this.$router.push({name:'login'})
+
+    },
+    release:function(){
+      var par={title:this.title,editorContent:this.editorContent}
+          this.axios({
+            method: "post",
+            url: "/user/write",
+            // contentType: "application/x-www-form-urlencoded",
+            data: par
+            // data:{"name": this.ruleForm2.name,
+            // "passwd":this.ruleForm2.pass}
+          }).then(response => {
+            if(response.data.code==1){
+              this.$message("发布成功");
+              this.$router.push({name:'login'})
+            }else{
+      console.log(response.data)
+            }
+               
+            
+          });
+
+      console.log(this.title)
+      console.log(this.editorContent)
+
+
+    },
+    catchData:function(){
+console.log(this.editorContent)
+    }
+  },
   // catchData是一个类似回调函数，来自父组件，当然也可以自己写一个函数，主要是用来获取富文本编辑器中的html内容用来传递给服务端
-  props: ['catchData'], // 接收父组件的方法
+  // props: ['catchData'], // 接收父组件的方法
   mounted() {
+  
     this.editor = new E(this.$refs.editorElem);
     // 编辑器的事件，每次改变会获取其html内容
-    // this.editor.customConfig.onchange = html => {
-    //   this.editorContent = html;
-    //   this.catchData(this.editorContent); 
-    //   // 把这个html通过catchData的方法传入父组件
-    // };
+    this.editor.customConfig.onchange = html => {
+      this.editorContent = html;
+      this.catchData(this.editorContent); 
+      // 把这个html通过catchData的方法传入父组件
+    };
 
     this.editor.customConfig.menus = [
       // 菜单配置
