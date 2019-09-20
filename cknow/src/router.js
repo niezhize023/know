@@ -4,19 +4,14 @@ import Home from './views/Home.vue'
 import Recommend from './views/Recommend.vue'
 import Follow from './views/Follow.vue'
 import Hot from './views/Hot.vue'
-<<<<<<< HEAD
 import Topicinfo from './views/Topicinfo.vue'
 import Avatar from './views/Avatar.vue'
-=======
 import Admin from './views/Admin.vue'
 import Reg from './views/Reg.vue'
 import Login from './views/Login.vue'
 import Write from './views/Write.vue'
 import Backstage from './views/Backstage.vue'
 
-
-
->>>>>>> 9982ba2ae28c91b8eb051d40adc4e3f2e9e8a3fe
 Vue.use(Router)
 
 export default new Router({
@@ -25,17 +20,18 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name:'home',
       component: Home
     },
     {
-<<<<<<< HEAD
-      path: '/avatar',
-      name: 'avatar',
-      component: Avatar
-=======
       path: '/admin',
       name:"admin",
       component: Admin
+    },
+    {
+      path: '/avatar',
+      name:"avatar",
+      component: Avatar
     },
     {
       path: '/backstage',
@@ -56,7 +52,6 @@ export default new Router({
       path: '/write',
       name:"write",
       component: Write
->>>>>>> 9982ba2ae28c91b8eb051d40adc4e3f2e9e8a3fe
     },
     {
       path: '/recommend',

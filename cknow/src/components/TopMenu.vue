@@ -43,7 +43,7 @@
                 <template slot="title">个人中心</template>
                 <el-menu-item index="2-1">选项1</el-menu-item>
                 <el-menu-item index="2-2">选项2</el-menu-item>
-                <el-menu-item index="2-3">选项3</el-menu-item>
+                <el-menu-item index="2-3">退出</el-menu-item>
             </el-submenu>
         </el-menu>
     </div>
@@ -61,6 +61,12 @@ export default {
     methods: {
         handleSelect(key, keyPath) {
             console.log(key, keyPath);
+            if(key=='2-3'){
+                //清空本地缓存
+                localStorage.clear();
+                //跳转到登录界面
+                this.$router.push({ name: "login" });
+            }
         }
     },
     created:function(){
@@ -87,6 +93,7 @@ export default {
 .top{
     border-bottom: 1px solid #ccc;
     background-color: white;
+    height: 70px;
 }
 .el-menu-demo {
     width: 1000px;

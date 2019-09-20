@@ -15,14 +15,12 @@ app.use(bodyParser.json());
 //启用子路由
 app.use('/user', require('./Controller/UserController'));
 app.use('/topic', require('./Controller/TopicController'));
-<<<<<<< HEAD
-
-
-=======
 app.use("/backstage",require("./Controller/BackstageController"))
 app.use("/upload",require("./Controller/UploadController"))
+app.use('/collect', require('./Controller/CollectController'));
+//静态资源托管
 app.use('/uploads',express.static(__dirname+'/uploads'));
->>>>>>> 9982ba2ae28c91b8eb051d40adc4e3f2e9e8a3fe
+
 app.listen(81, () => {
     console.log('Example app listening on port 81!');
 });

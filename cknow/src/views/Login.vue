@@ -91,9 +91,11 @@ export default {
               this.$message("用户账号或密码错误");
             } else {
               this.$message("登录成功");
-              this.$router.push({name:'about'})
+              // console.log(response.data.resu[0].uid)
+              this.$router.push({name:'home'})
               this.$store.commit('increment')
-              console.log(this.$store.state.status)
+              localStorage.setItem("token",this.$store.state.status)
+              localStorage.setItem("uid",response.data.resu[0].uid)
             }
           });
         } else {

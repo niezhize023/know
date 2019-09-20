@@ -35,7 +35,6 @@ export default {
         };
     },
     created: function() {
-        console.log();
         this.axios
             .post("/topic/getonetopic", {
                 tid: this.$route.query.tid
