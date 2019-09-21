@@ -11,8 +11,12 @@ import Reg from './views/Reg.vue'
 import Login from './views/Login.vue'
 import Write from './views/Write.vue'
 import Backstage from './views/Backstage.vue'
+<<<<<<< Updated upstream
 import Personal from './views/Personal.vue'
 
+=======
+import Edit from './views/Editinfo.vue'
+>>>>>>> Stashed changes
 Vue.use(Router)
 
 export default new Router({
@@ -28,6 +32,11 @@ export default new Router({
       path: '/admin',
       name:"admin",
       component: Admin
+    },
+    {
+      path: '/editinfo',
+      name:"editinfo",
+      component: Edit
     },
     {
       path: '/avatar',
