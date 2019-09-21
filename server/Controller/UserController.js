@@ -23,6 +23,16 @@ router.post("/reg",(req,res)=>{
         res.json(ob)
     })
 })
+
+router.post("/checkreg",(req,res)=>{
+    console.log(req.body)
+    let name=req.body.name
+    let userModel=new UserModel()
+    userModel.checkuser(name,(ob)=>{
+        console.log(ob)
+        res.json(ob)
+    })
+})
 router.post("/admin",(req,res)=>{
     let name=req.body.name
     let passwd=req.body.passwd
@@ -40,4 +50,7 @@ router.post("/write",(req,res)=>{
         res.json(ob)
     })
 })
+
+
+
 module.exports=router

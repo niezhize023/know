@@ -70,6 +70,7 @@ export default {
         callback(new Error("用户账号为2-16位"));
       } else {
           // if(this.name)
+          this.CheckUser()
         callback();
       }
 
@@ -121,6 +122,29 @@ export default {
     };
   },
   methods: {
+    CheckUser:function(){
+      
+        this.axios({
+            method: "post",
+            url: "/user/checkreg",
+            data: this.name
+          }).then(response => {
+            console.log(response.data)
+            if(response.data.code==-1){
+                this.$confirm('你已注册,请直接登录' ,'提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
+             }
+          
+             
+           else{
+              return true
+            }
+           this.$router.push({name:'login'})
+    })
+    },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
@@ -153,7 +177,7 @@ export default {
 </script>
 <style>
 body{
-  /* position: absolute; */
+
   left: 0;
   right: 0;
   top: 0;
@@ -167,28 +191,23 @@ body{
   background-color: white;
   width: 400px;
   height: 370px;
-  /* padding: auto; */
-  /* padding: 30px 67px 0 67px; */
+
   box-sizing: border-box;
   margin:100px auto;
 border-radius: 4px;
 box-shadow: rgb(179, 183, 194)
-  /* border: 2px solid red; */
+
 }
 .input{
   width: 350px;
-  /* margin: 200px; */
+
   height: 40px;
   font-size: 16px;
-  /* border-top: 1px solid transparent;
-  border-left: 1px solid transparent;
-  border-right: 1px solid transparent;
-border-bottom: 1px solid #DCDFE6; */
 }
 .big{
   width: 100%;
   height: auto;
-  /* background-color: red; */
+
 
 }
 
@@ -214,7 +233,7 @@ width: 350px;
   width: 300px;
  margin-left: -95px;
 
- /* text-align: center; */
+
 }
 .box{
   padding:15px 20px;

@@ -41,8 +41,8 @@
 
             <el-submenu index="2" class="mycenter">
                 <template slot="title">个人中心</template>
-                <el-menu-item index="2-1">选项1</el-menu-item>
-                <el-menu-item index="2-2">选项2</el-menu-item>
+                <el-menu-item index="2-1" @click="myperson">我的主页</el-menu-item>
+                <el-menu-item index="2-2">编辑</el-menu-item>
                 <el-menu-item index="2-3">退出</el-menu-item>
             </el-submenu>
         </el-menu>
@@ -67,7 +67,11 @@ export default {
                 //跳转到登录界面
                 this.$router.push({ name: "login" });
             }
-        }
+        },
+         myperson:function(){
+              this.$router.push({name:'personal'})
+
+  }
     },
     created:function(){
       console.log(this.$route.path)
@@ -81,7 +85,8 @@ export default {
           this.activeIndex = '7'
           this.activeIndex2 = '7'
       }
-  }
+  },
+ 
 };
 </script>
 

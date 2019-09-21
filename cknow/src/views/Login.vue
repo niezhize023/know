@@ -21,8 +21,9 @@
         <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off" placeholder="请确认密码"  class="input"></el-input>
       </el-form-item>
 
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm2')" id="rreg">登录</el-button>
+      <el-form-item >
+        <el-button type="primary" @click="submitForm('ruleForm2')" id="login">登录</el-button>
+        <el-button type="primary" @click="submitForm('ruleForm2')" id="llogin">点击注册</el-button>
         <!-- <el-button @click="resetForm('ruleForm2')">重置</el-button> -->
       </el-form-item>
     </el-form>
@@ -91,7 +92,7 @@ export default {
               this.$message("用户账号或密码错误");
             } else {
               this.$message("登录成功");
-              // console.log(response.data.resu[0].uid)
+                   // console.log(response.data.resu[0].uid)
               this.$router.push({name:'home'})
               this.$store.commit('increment')
               localStorage.setItem("token",this.$store.state.status)
@@ -122,6 +123,7 @@ body{
   background-repeat: no-repeat;
   
 }
+
 .login {
 background-color: white;
   width: 400px;
@@ -136,7 +138,6 @@ box-shadow: rgb(179, 183, 194)
 }
 .input{
   width: 350px;
-  /* margin: 200px; */
   height: 40px;
   font-size: 16px;
   /* border-top: 1px solid transparent;
@@ -144,10 +145,15 @@ box-shadow: rgb(179, 183, 194)
   border-right: 1px solid transparent;
 border-bottom: 1px solid #DCDFE6; */
 }
-#rreg{
-/* width: 350px;  */
-    margin: 0 0 0 -90px;
-/* padding-left: 20px; */
+#login{
+width: 120px; 
+    margin: 0 0 0 -80px;
+padding-left: 20px;
+}
+#llogin{
+  margin: 0 0 0 60px;
+width: 120px; 
+
 }
 #ff{
   width: 300px;
@@ -155,6 +161,10 @@ border-bottom: 1px solid #DCDFE6; */
 
   
 }
+element.style {
+    margin-left: 80px!important
+}
+
 #ll{
   color: #2C3E50;
  height: 40px;
@@ -167,7 +177,6 @@ border-bottom: 1px solid #DCDFE6; */
   width: 300px;
  margin-left: -95px;
 
- /* text-align: center; */
 }
 .box{
   padding:15px 20px;

@@ -35,15 +35,18 @@ export default {
         };
     },
     created: function() {
+        console.log(this.$route.query.tid)
         this.axios
             .post("/topic/getonetopic", {
                 tid: this.$route.query.tid
             })
             .then(response => {
+                console.log(response)
                 this.topicinfo = response.data[0][0][0];
                 this.topiccom = response.data[0][1];
                 this.userinfo = response.data[1];
                 console.log(this.topicinfo);
+
             })
             .catch(function(error) {
                 console.log(error);

@@ -11,6 +11,7 @@ import Reg from './views/Reg.vue'
 import Login from './views/Login.vue'
 import Write from './views/Write.vue'
 import Backstage from './views/Backstage.vue'
+import Personal from './views/Personal.vue'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
       path: '/reg',
       name:"reg",
       component: Reg
+    },
+    {
+      path: '/personal',
+      name:"personal",
+      component: Personal
     },
     {
       path: '/login',
