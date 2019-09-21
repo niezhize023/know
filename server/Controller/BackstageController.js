@@ -9,6 +9,14 @@ router.get('/info', (req, res) => {
         res.json(ob)
     })
 });
+router.post('/remove', (req, res) => {
+    // console.log(req)
+    var tid=req.body.tid
+    let backstageModel=new BackstageModel()
+    backstageModel.getremove(tid,(ob)=>{
+        res.json(ob)
+    })
+});
 
 
 module.exports=router

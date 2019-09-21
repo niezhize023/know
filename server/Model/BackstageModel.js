@@ -15,5 +15,18 @@ class BackstageModel extends DbBase{
             cb(ob)
         })
     }
+    getremove(tid,cb){
+        let sql='delete from topic where tid=?'
+        this.mydb.query(sql,[tid],(err,result)=>{
+            let ob={code:1,re:''}
+            if(err){
+                ob.code=-1
+            }else{
+                console.log(ob);  
+                ob.re=result 
+            }
+            cb(ob)
+        })
+    }
 }
 module.exports=BackstageModel

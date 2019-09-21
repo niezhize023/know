@@ -1,29 +1,31 @@
 <template>
   <div class="admin">
-    <h1>管理员登录</h1>
+       <div class="tt">
+    <h2>管理员登录</h2>
     <el-form
       :model="ruleForm2"
       status-icon
       :rules="rules2"
       ref="ruleForm2"
-      label-width="100px"
-      class="demo-ruleForm"
+      label-width="90px"
+      id="ff"
     >
       <el-form-item label="管理员账号" prop="name" >
-        <el-input v-model="ruleForm2.name"></el-input>
+        <el-input v-model="ruleForm2.name" class="input"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="pass" >
-        <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
+        <el-input type="password" v-model="ruleForm2.pass" auto-complete="off" class="input"></el-input>
       </el-form-item>
       <el-form-item label="确认密码" prop="checkPass">
-        <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
+        <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off" class="input"></el-input>
       </el-form-item>
 
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm2')">登录</el-button>
-        <el-button @click="resetForm('ruleForm2')">重置</el-button>
+      <el-form-item class="gin">
+        <el-button type="primary" @click="submitForm('ruleForm2')" id="login" >登录</el-button>
+        <el-button @click="resetForm('ruleForm2')" id="llogin">重置</el-button>
       </el-form-item>
     </el-form>
+       </div>
   </div>
 </template>
 
@@ -114,13 +116,56 @@ export default {
 };
 </script>
 <style>
+.input{
+  width: 350px;
+  height: 40px;
+  font-size: 16px;
+
+}
 .admin {
   /* background-color: red; */
-  width: 400px;
-  height: 370px;
-  padding: 30px 67px 0 30px;
+ width: 400px;
+ height: 370px;
+
+  padding:30px;
   box-sizing: border-box;
   margin:100px auto;
-  border: 2px solid red;
+border-radius: 4px;
+
+  background-color: pink;
+  /* border: 2px solid red; */
+}
+#login{
+width: 120px; 
+    margin: 0 0 0 -80px;
+padding-left: 20px;
+}
+#llogin{
+  margin: 0 0 0 60px;
+width: 120px; 
+
+}
+.gin .el-form-item__content {
+   margin-left:80px!important
+}
+.tt{
+      width: 80%;
+    height: 43px;
+    /* float: left; */
+    text-align: center;
+    line-height: 40px;
+    font-size: 18px;
+
+
+
+
+
+}
+
+#ff{
+  width: 300px;
+  margin: auto
+
+  
 }
 </style>

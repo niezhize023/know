@@ -268,7 +268,7 @@ line-height: 40px;
 font-size:25px;
 
 }
-span{
+/* span{
   float: left;
   width: 100%;
 }
@@ -279,5 +279,5 @@ span:hover{
 a:hover{
   color: #0084FF;
   cursor: pointer;
-}
+} */
 </style>

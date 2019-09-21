@@ -37,13 +37,15 @@
                     v-model="input"
                 >
                 </el-input>
-            </el-menu-item>
+         
 
+            </el-menu-item>
+   
             <el-submenu index="2" class="mycenter">
                 <template slot="title">个人中心</template>
                 <el-menu-item index="2-1" @click="myperson">我的主页</el-menu-item>
-                <el-menu-item index="2-2">编辑</el-menu-item>
-                <el-menu-item index="2-3">退出</el-menu-item>
+                <!-- <el-menu-item index="2-2">编辑</el-menu-item> -->
+                <el-menu-item index="2-2">退出</el-menu-item>
             </el-submenu>
         </el-menu>
     </div>
@@ -55,13 +57,14 @@ export default {
         return {
             activeIndex: "1",
             activeIndex2: "1",
-            input:''
+            input:'',
+            
         };
     },
     methods: {
         handleSelect(key, keyPath) {
             console.log(key, keyPath);
-            if(key=='2-3'){
+            if(key=='2-2'){
                 //清空本地缓存
                 localStorage.clear();
                 //跳转到登录界面
@@ -71,7 +74,8 @@ export default {
          myperson:function(){
               this.$router.push({name:'personal'})
 
-  }
+  },
+  
     },
     created:function(){
       console.log(this.$route.path)
