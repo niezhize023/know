@@ -83,20 +83,21 @@ class UserModel extends DbBase {
         })
     }
     checkuser(name,cb){
-        let sql = 'select * from user where nickname=?'
+        let sql = 'select * from users where nickname=?'
         this.mydb.query(sql, [name], (err, results) => {
-
+            console.log(results[0])
+            
             let ob = {
                 code: 1,
                 resu: []
             };
 
-            if (err) {
-                ob.code = -1;
+            if (results[0]) {
+                 ob.resu = results;
             } else {
-               
-                // console.log(results)
-                ob.resu = results;
+                ob.code = -1;
+              
+                // console.log(ob)
             }
             cb(ob);
         })

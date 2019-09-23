@@ -16,9 +16,9 @@
       <el-form-item label="密码" prop="pass" >
         <el-input type="password" v-model="ruleForm2.pass" auto-complete="off" class="input"></el-input>
       </el-form-item>
-      <el-form-item label="确认密码" prop="checkPass">
+      <!-- <el-form-item label="确认密码" prop="checkPass">
         <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off" class="input"></el-input>
-      </el-form-item>
+      </el-form-item> -->
 
       <el-form-item class="gin">
         <el-button type="primary" @click="submitForm('ruleForm2')" id="login" >登录</el-button>
@@ -56,15 +56,15 @@ export default {
         callback();
       }
     };
-    var validatePass2 = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请再次输入密码"));
-      } else if (value !== this.ruleForm2.pass) {
-        callback(new Error("两次输入密码不一致!"));
-      } else {
-        callback();
-      }
-    };
+    // var validatePass2 = (rule, value, callback) => {
+    //   if (value === "") {
+    //     callback(new Error("请再次输入密码"));
+    //   } else if (value !== this.ruleForm2.pass) {
+    //     callback(new Error("两次输入密码不一致!"));
+    //   } else {
+    //     callback();
+    //   }
+    // };
     return {
       ruleForm2: {
         pass: "",
@@ -73,7 +73,7 @@ export default {
       },
       rules2: {
         pass: [{ validator: validatePass, trigger: "blur" }],
-        checkPass: [{ validator: validatePass2, trigger: "blur" }],
+        // checkPass: [{ validator: validatePass2, trigger: "blur" }],
         name: [{ validator: checkName, trigger: "blur" }]
       }
     };
@@ -132,7 +132,7 @@ export default {
   margin:100px auto;
 border-radius: 4px;
 
-  background-color: pink;
+  background-color: white;
   /* border: 2px solid red; */
 }
 #login{

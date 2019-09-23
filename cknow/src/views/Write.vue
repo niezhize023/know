@@ -1,8 +1,8 @@
 <template>
     <div>
         <div id="wangeditor">
-            <div class="top">
-                <h1>写文章</h1>
+            <div class="top"  >
+               <h1>写文章</h1>
             </div>
             <input
                 type="text"
@@ -30,9 +30,12 @@ export default {
     name: "Editor",
     data() {
         return {
+            img:'',
             editor: null,
             editorContent: "",
-            title: ""
+            title: "",
+            dialogImageUrl: '',
+        dialogVisible: false
         };
     },
     methods: {
@@ -132,4 +135,5 @@ html {
     width: 1000px;
     margin: auto;
 }
+
 </style>

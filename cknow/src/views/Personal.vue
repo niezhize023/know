@@ -20,23 +20,21 @@
 
             <div class="pre-left">
                 <el-tabs v-model="activeName" @tab-click="handleClick">
-                    <el-tab-pane label="用户管理" name="first"
-                        >用户管理</el-tab-pane
+                    <el-tab-pane label="我的收藏" name="first"
+                        >我的收藏</el-tab-pane
                     >
-                    <el-tab-pane label="配置管理" name="second"
+                    <el-tab-pane label="我的赞同" name="second"
                         >配置管理</el-tab-pane
                     >
-                    <el-tab-pane label="角色管理" name="third"
-                        >角色管理</el-tab-pane
-                    >
-                    <el-tab-pane label="定时任务补偿" name="fourth"
-                        >定时任务补偿</el-tab-pane
-                    >
+                  
                 </el-tabs>
             </div>
             <div class="pre-right">
                 <div class="writeclick" @click="writewz">
                     <i class="el-icon-edit-outline"></i>点击写文章
+                </div>
+                <div class="pre-rightbottom">
+
                 </div>
             </div>
         </div>
@@ -105,7 +103,7 @@ body {
     left: 0;
     width: 100px;
     height: 100px;
-    background-color: blue;
+    background-color: #E7E7E7;
     z-index: 9999;
 }
 
@@ -126,17 +124,21 @@ body {
     right: 20px;
 }
 .pre-left {
-    width: 70%;
+    width: 74%;
     height: 300px;
-    background-color: #a82aa1;
+    /* background-color: #a82aa1; */
     float: left;
 }
 .pre-right {
-    width: 29%;
+    width: 25%;
     height: 300px;
-    background-color: rgb(99, 34, 95);
     float: left;
     margin-left: 10px;
+}
+.pre-rightbottom{
+    /* background-color: red; */
+    height: 200px;
+    border: 1px solid #409EFF;
 }
 .middle::after{
     content: '';
@@ -145,13 +147,18 @@ body {
 }
 
 .writeclick {
+    box-sizing: border-box;
     width: 100%;
     height: 80px;
     line-height: 80px;
-    background-color: rgb(199, 136, 147);
+    color: #409EFF;
     font-size: 30px;
     text-align: center;
     cursor: pointer;
+    border: 1px solid #409EFF;
+}
+.writeclick:hover{
+    background-color: #E9F2FC;
 }
 .el-carousel__item h3 {
     color: #475669;

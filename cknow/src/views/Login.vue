@@ -27,7 +27,7 @@
                     class="input"
                 ></el-input>
             </el-form-item>
-            <el-form-item label="确认密码" prop="checkPass">
+            <!-- <el-form-item label="确认密码" prop="checkPass">
                 <el-input
                     type="password"
                     v-model="ruleForm2.checkPass"
@@ -35,7 +35,7 @@
                     placeholder="请确认密码"
                     class="input"
                 ></el-input>
-            </el-form-item>
+            </el-form-item> -->
 
             <el-form-item>
                 <el-button
@@ -78,15 +78,15 @@ export default {
                 callback();
             }
         };
-        var validatePass2 = (rule, value, callback) => {
-            if (value === "") {
-                callback(new Error("请再次输入密码"));
-            } else if (value !== this.ruleForm2.pass) {
-                callback(new Error("两次输入密码不一致!"));
-            } else {
-                callback();
-            }
-        };
+        // var validatePass2 = (rule, value, callback) => {
+        //     if (value === "") {
+        //         callback(new Error("请再次输入密码"));
+        //     } else if (value !== this.ruleForm2.pass) {
+        //         callback(new Error("两次输入密码不一致!"));
+        //     } else {
+        //         callback();
+        //     }
+        // };
         return {
             ruleForm2: {
                 pass: "",
@@ -95,7 +95,7 @@ export default {
             },
             rules2: {
                 pass: [{ validator: validatePass, trigger: "blur" }],
-                checkPass: [{ validator: validatePass2, trigger: "blur" }],
+                // checkPass: [{ validator: validatePass2, trigger: "blur" }],
                 name: [{ validator: checkName, trigger: "blur" }]
             }
         };

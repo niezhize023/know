@@ -141,13 +141,14 @@ export default {
     },
     methods: {
         CheckUser: function() {
+            console.log(this.ruleForm2.name)
             this.axios({
                 method: "post",
                 url: "/user/checkreg",
-                data: this.name
+                data: {name:this.ruleForm2.name}
             }).then(response => {
                 console.log(response.data);
-                if (response.data.code == -1) {
+                if (response.data.code == 1) {
                     this.$confirm("你已注册,请直接登录", "提示", {
                         confirmButtonText: "确定",
                         cancelButtonText: "取消",

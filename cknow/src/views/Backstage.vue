@@ -23,17 +23,17 @@
       style="width: 80%"
       id="table"
       min-height="250"
-      max-height="600"
+      max-height="500"
     >
       <el-table-column fixed prop="uid" label="用户" width="50"></el-table-column>
-      <el-table-column prop="imgs" label="图片" width="120"></el-table-column>
+     
       <el-table-column prop="title" label="标题" width="180"></el-table-column>
-      <el-table-column prop="content" label="内容" width="420"></el-table-column>
+      <el-table-column prop="content" label="内容" width="500"></el-table-column>
 
       <el-table-column prop="like" label="点赞数" width="70"></el-table-column>
       <el-table-column prop="comment" label="评论数" width="70"></el-table-column>
       <el-table-column prop="collection" label="收藏数" width="70"></el-table-column>
-      <el-table-column prop="time" label="发布时间" width="120"></el-table-column>
+      <el-table-column prop="time" label="发布时间" width="180"></el-table-column>
       <el-table-column fixed="right" label="操作" width="80">
         <template slot-scope="scope">
           <el-button
@@ -44,6 +44,12 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <!-- <el-pagination
+  background
+  layout="prev, pager, next"
+  :total="1000">
+</el-pagination> -->
   </div>
 </template>
 <script>
@@ -51,12 +57,13 @@ export default {
   data: function() {
     return {
       activeIndex: "2",
-
+      // page:'',
+      // pagenum:'',
       tableData4: [
         {
           uid: "",
           title: "",
-          content: [],
+          content: "",
           imgs: "",
           like: "",
           comment: "",
@@ -76,8 +83,8 @@ export default {
     },
 
     deleteRow(index, rows) {
-      console.log(index);
-      console.log(this.tableData4[index].tid);
+      // console.log(index);
+      // console.log(this.tableData4[index].tid);
       this.axios({
         method: "post",
         url: "/backstage/remove",
@@ -158,4 +165,11 @@ el-table {
 #table {
   margin: 0 auto;
 }
+.el-table .cell {
+
+    overflow: hidden!important;
+    white-space: nowrap!important;
+}
+
+
 </style>

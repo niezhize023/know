@@ -47,5 +47,7 @@ router.post('/img',upload.array('imgs'),(req,res)=>{
     });
     res.json(data);
 });
+
+
 module.exports=router
 

@@ -4,6 +4,7 @@ class BackstageModel extends DbBase{
 
     getinfo(cb){
         let sql='select * from topic where 1'
+        // let mysql='select nickname from users where uid'
         this.mydb.query(sql,(err,result)=>{
             let ob={code:1,re:''}
             if(err){
@@ -44,8 +45,8 @@ class BackstageModel extends DbBase{
         })
     }
     getsearchtitle(title,cb){
-        let sql='select * from topic where title=?'
-        this.mydb.query(sql,[title],(err,result)=>{
+        let sql=`select * from topic where title like '%${title}%'`
+        this.mydb.query(sql,(err,result)=>{
             console.log(result)
             let ob={code:1,re:''}
             if(err){

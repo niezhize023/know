@@ -25,7 +25,7 @@ router.post("/reg",(req,res)=>{
 })
 
 router.post("/checkreg",(req,res)=>{
-    console.log(req.body)
+    // console.log(req.body)
     let name=req.body.name
     let userModel=new UserModel()
     userModel.checkuser(name,(ob)=>{

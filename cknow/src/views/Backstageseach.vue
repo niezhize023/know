@@ -13,7 +13,7 @@
       </el-menu>
     </div>
 
-    <div style="margin-top: 15px;">
+    <div style="margin-top: 15px;" class="back-search">
       <el-input placeholder="请输入内容" v-model="input5" class="input-with-select">
         <el-select v-model="select" slot="prepend" placeholder="请选择">
           <el-option label="用户ID" value="1"></el-option>
@@ -32,14 +32,14 @@
       max-height="600"
     >
       <el-table-column fixed prop="uid" label="用户" width="50"></el-table-column>
-      <el-table-column prop="imgs" label="图片" width="120"></el-table-column>
+     
       <el-table-column prop="title" label="标题" width="180"></el-table-column>
-      <el-table-column prop="content" label="内容" width="420"></el-table-column>
+      <el-table-column prop="content" label="内容" width="500"></el-table-column>
 
       <el-table-column prop="like" label="点赞数" width="70"></el-table-column>
       <el-table-column prop="comment" label="评论数" width="70"></el-table-column>
       <el-table-column prop="collection" label="收藏数" width="70"></el-table-column>
-      <el-table-column prop="time" label="发布时间" width="120"></el-table-column>
+      <el-table-column prop="time" label="发布时间" width="180"></el-table-column>
       <el-table-column fixed="right" label="操作" width="80">
         <template slot-scope="scope">
           <el-button
@@ -50,6 +50,8 @@
         </template>
       </el-table-column>
     </el-table>
+
+
   </div>
 </template>
 <script>
@@ -80,9 +82,10 @@ export default {
         this.$router.push({ name: "backstage" });
       }
     },
-    deleteRow(index, rows) {
-      console.log(index);
-      console.log(this.tableData4[index].tid);
+
+        deleteRow(index, rows) {
+      // console.log(index);
+      // console.log(this.tableData4[index].tid);
       this.axios({
         method: "post",
         url: "/backstage/remove",
@@ -133,5 +136,9 @@ export default {
 }
 #table {
   margin: 0 auto;
+}
+.back-search{
+  width: 80%;
+  margin: 15px auto;
 }
 </style>
