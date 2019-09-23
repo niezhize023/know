@@ -8,13 +8,9 @@
     <div ref="editorElem" class="wangeditor"></div>
     <!-- </textarea> -->
   </div>
-  
   <el-row>
-
   <el-button type="primary" plain @click="release">发布文章</el-button>
-
   <el-button type="info" plain @click="signout">退出</el-button>
-
 </el-row>
   </div>
 </template>
@@ -22,6 +18,7 @@
 import E from "wangeditor";
 
 export default {
+  inject:['reload'],
   name: "Editor",
   data() {
     return {
@@ -33,32 +30,28 @@ export default {
   methods: {
     signout:function(){
               this.$router.push({name:'login'})
-
     },
     release:function(){
-      var par={title:this.title,editorContent:this.editorContent}
+      var time = new Date();
+      var publishtime=time.toLocaleString()
+      var par={title:this.title,editorContent:this.editorContent,uid:localStorage.getItem("uid"),publishtime}
           this.axios({
             method: "post",
             url: "/user/write",
-            // contentType: "application/x-www-form-urlencoded",
             data: par
-            // data:{"name": this.ruleForm2.name,
-            // "passwd":this.ruleForm2.pass}
           }).then(response => {
             if(response.data.code==1){
+              // console.log(publishtime)
               this.$message("发布成功");
-              this.$router.push({name:'login'})
+        //  this.$router.go(0)
+               this.reload()
+              this.$router.push({name:'write'})
             }else{
       console.log(response.data)
             }
-               
-            
           });
-
       console.log(this.title)
       console.log(this.editorContent)
-
-
     },
     catchData:function(){
 console.log(this.editorContent)

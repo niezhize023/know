@@ -113,6 +113,7 @@ right: 20px;
   width: 70%;
   height: 300px;
   background-color: #A82AA1;
+  float: left;
 }
 .right{
     width: 29%;

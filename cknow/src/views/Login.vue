@@ -23,7 +23,7 @@
 
       <el-form-item >
         <el-button type="primary" @click="submitForm('ruleForm2')" id="login">登录</el-button>
-        <el-button type="primary" @click="submitForm('ruleForm2')" id="llogin">点击注册</el-button>
+        <el-button type="primary" @click="resetForm('ruleForm2')" id="llogin">点击注册</el-button>
         <!-- <el-button @click="resetForm('ruleForm2')">重置</el-button> -->
       </el-form-item>
     </el-form>
@@ -106,7 +106,8 @@ export default {
       });
     },
     resetForm(formName) {
-      this.$refs[formName].resetFields();
+              this.$router.push({name:'reg'})
+      
     }
   }
 };
@@ -211,7 +212,7 @@ line-height: 40px;
 font-size:25px;
 
 }
-span{
+/* span{
   float: left;
   width: 100%;
 }
@@ -222,5 +223,5 @@ span:hover{
 a:hover{
   color: #0084FF;
   cursor: pointer;
-}
+} */
 </style>

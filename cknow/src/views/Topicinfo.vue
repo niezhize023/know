@@ -51,19 +51,6 @@ export default {
         };
     },
     created: function() {
-<<<<<<< Updated upstream
-        console.log(this.$route.query.tid)
-        this.axios
-            .post("/topic/getonetopic", {
-                tid: this.$route.query.tid
-            })
-            .then(response => {
-                console.log(response)
-                this.topicinfo = response.data[0][0][0];
-                this.topiccom = response.data[0][1];
-                this.userinfo = response.data[1];
-                console.log(this.topicinfo);
-=======
         var that = this
         function getUserAccount() {
             // console.log(that.$route.query.tid)
@@ -82,7 +69,6 @@ export default {
                 console.log(acct)
                 console.log(perms)
 
->>>>>>> Stashed changes
 
             })
         );
