@@ -29,7 +29,7 @@ router.post("/checkreg",(req,res)=>{
     let name=req.body.name
     let userModel=new UserModel()
     userModel.checkuser(name,(ob)=>{
-        console.log(ob)
+        // console.log(ob)
         res.json(ob)
     })
 })
@@ -44,13 +44,14 @@ router.post("/admin",(req,res)=>{
 
 router.post("/write",(req,res)=>{
     let title=req.body.title
+    let uid=req.body.uid
     let editorContent=req.body.editorContent
+    let publishtime=req.body.publishtime
     let userModel=new UserModel()
-    userModel.writearticle(title,editorContent,(ob)=>{
+    userModel.writearticle(uid,title,editorContent,publishtime,(ob)=>{
         res.json(ob)
     })
 })
-
 router.post("/getuserinfo",(req,res)=>{
     let userModel=new UserModel()
     userModel.getuserinfo(req.body.uid,(result)=>{
@@ -58,5 +59,6 @@ router.post("/getuserinfo",(req,res)=>{
     })
     
 })
+
 
 module.exports=router

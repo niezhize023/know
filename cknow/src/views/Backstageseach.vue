@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div>
     <div class="toop">
       <el-menu
         :default-active="activeIndex"
@@ -8,14 +8,20 @@
         @select="handleSelect"
       >
         <el-menu-item index="1">处理中心</el-menu-item>
-
         <el-menu-item index="2">话题管理</el-menu-item>
-
         <div class="backname">管理员!欢迎回来!</div>
       </el-menu>
     </div>
 
-    <div></div>
+    <div style="margin-top: 15px;">
+      <el-input placeholder="请输入内容" v-model="input5" class="input-with-select">
+        <el-select v-model="select" slot="prepend" placeholder="请选择">
+          <el-option label="用户ID" value="1"></el-option>
+          <el-option label="标题" value="2"></el-option>
+        </el-select>
+        <el-button slot="append" icon="el-icon-search" @click="Searchid"></el-button>
+      </el-input>
+    </div>
 
     <el-table
       :data="tableData4"
@@ -48,10 +54,11 @@
 </template>
 <script>
 export default {
-  data: function() {
+  data() {
     return {
-      activeIndex: "2",
-
+      input5: "",
+      select: "",
+      activeIndex: "1",
       tableData4: [
         {
           uid: "",
@@ -69,12 +76,10 @@ export default {
   },
   methods: {
     handleSelect(key, keyPath) {
-      if (key == 1) {
-        this.$router.push({ name: "backstageseach" });
+      if (key == 2) {
+        this.$router.push({ name: "backstage" });
       }
-      // console.log(key, keyPath);
     },
-
     deleteRow(index, rows) {
       console.log(index);
       console.log(this.tableData4[index].tid);
@@ -86,74 +91,45 @@ export default {
         this.$message("删除成功");
       });
       rows.splice(index, 1);
-    }
-  },
-  created() {
-    this.axios.get("/backstage/info").then(response => {
-      console.log(response.data.re);
-      for (var i = 0; i < response.data.re.length; i++) {
-        //取出了内容为字符串
-        console.log(response.data.re[i].content);
-        //  this.tableData4.content='345'
-        // this.arr.push(response.data.re[i].content)
+    },
+    Searchid() {
+      console.log(this.select);
+      console.log(this.input5);
+      if (this.select == 1) {
+        var params = new URLSearchParams();
+        params.append("uid", this.input5);
+
+        this.axios({
+          method: "post",
+          url: "/backstage/searchid",
+          data: params
+        }).then(response => {
+          console.log(response.data.re);
+          this.tableData4 = response.data.re;
+        });
+      } else {
+        var params = new URLSearchParams();
+        params.append("title", this.input5);
+
+        this.axios({
+          method: "post",
+          url: "/backstage/searchtitle",
+          data: params
+        }).then(response => {
+          console.log(response.data.re);
+          this.tableData4 = response.data.re;
+        });
       }
-      console.log(this.arr);
-      this.tableData4 = response.data.re;
-      //  console.log(this.tableData4[0].tid)
-   
-    });
+    }
   }
 };
 </script>
-<style >
-.toop ul {
-  list-style: none;
-  float: left;
+<style>
+.el-select .el-input {
+  width: 130px;
 }
-.toop ul li {
-  display: block;
-  float: left;
-  width: 200px;
-  background: white;
-  height: 80px;
-  line-height: 80px;
-}
-.backleft {
-  width: 18%;
-  background-color: pink;
-  height: 200px;
-  float: left;
-  margin-right: 2%;
-}
-html {
-  height: auto;
-  width: 100%;
-}
-.app {
-  min-width: 1260px;
-  width: 100%;
-}
-el-table {
-  float: right;
-}
-
-.toop {
-  width: 100%;
-  height: 60px;
-  margin-bottom: 40px;
-}
-.backname {
-  width: 190px;
-  height: 60px;
-  line-height: 60px;
-  float: right;
-  /* background: pink; */
-  margin: 0 60px;
-  color: #545c64;
-}
-.el-menu-demo {
-  width: 100% !important;
-  background-color: white;
+.input-with-select .el-input-group__prepend {
+  background-color: #fff;
 }
 #table {
   margin: 0 auto;

@@ -63,9 +63,9 @@ class UserModel extends DbBase {
         })
 
     }
-    writearticle(title,editorContent,cb){
-        let sql = 'insert into topic(title,content) values (?,?)'
-        this.mydb.query(sql, [title,editorContent], (err, results) => {
+    writearticle(uid,title,editorContent,publishtime,cb){
+        let sql = 'insert into topic(uid,title,content,time) values (?,?,?,?)'
+        this.mydb.query(sql, [uid,title,editorContent,publishtime], (err, results) => {
             let ob = {
                 code: 1,
                 resu: []
@@ -101,6 +101,7 @@ class UserModel extends DbBase {
             cb(ob);
         })
     }
+    
     getuserinfo(uid,callback){
         let sql = `SELECT nickname,avatar FROM users WHERE uid=${uid}`
         this.mydb.query(sql,(err,results)=>{
@@ -111,7 +112,6 @@ class UserModel extends DbBase {
             }
         })
     }
-
 }
 
 

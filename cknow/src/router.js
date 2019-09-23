@@ -13,55 +13,57 @@ import Write from './views/Write.vue'
 import Backstage from './views/Backstage.vue'
 import Personal from './views/Personal.vue'
 import Edit from './views/Editinfo.vue'
+import Backstageseach from './views/Backstageseach.vue'
+
+
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [
-    {
+  routes: [{
       path: '/',
-      name:'home',
+      name: 'home',
       component: Home
     },
     {
       path: '/admin',
-      name:"admin",
+      name: "admin",
       component: Admin
     },
     {
       path: '/editinfo',
-      name:"editinfo",
+      name: "editinfo",
       component: Edit
     },
     {
       path: '/avatar',
-      name:"avatar",
+      name: "avatar",
       component: Avatar
     },
     {
       path: '/backstage',
-      name:"backstage",
+      name: "backstage",
       component: Backstage
     },
     {
       path: '/reg',
-      name:"reg",
+      name: "reg",
       component: Reg
     },
     {
       path: '/personal',
-      name:"personal",
+      name: "personal",
       component: Personal
     },
     {
       path: '/login',
-      name:"login",
+      name: "login",
       component: Login
     },
     {
       path: '/write',
-      name:"write",
+      name: "write",
       component: Write
     },
     {
@@ -81,12 +83,17 @@ export default new Router({
       component: Hot
     },
     {
+      path: '/backstageseach',
+      name: "backstageseach",
+      component: Backstageseach
+    },
+    /* {
       path: '/about',
       name: 'about',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
+      component: () => import( /* webpackChunkName: "about" '.iews/About.vue')
+    } */
   ]
 })

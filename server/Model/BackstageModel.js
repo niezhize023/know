@@ -28,5 +28,34 @@ class BackstageModel extends DbBase{
             cb(ob)
         })
     }
+    getsearchid(uid,cb){
+        console.log(uid)
+        let sql='select * from topic where uid=?'
+        this.mydb.query(sql,[uid],(err,result)=>{
+            console.log(result)
+            let ob={code:1,re:''}
+            if(err){
+                ob.code=-1
+            }else{
+                console.log(ob);  
+                ob.re=result
+            }
+            cb(ob)
+        })
+    }
+    getsearchtitle(title,cb){
+        let sql='select * from topic where title=?'
+        this.mydb.query(sql,[title],(err,result)=>{
+            console.log(result)
+            let ob={code:1,re:''}
+            if(err){
+                ob.code=-1
+            }else{
+                console.log(ob);  
+                ob.re=result
+            }
+            cb(ob)
+        })
+    }
 }
 module.exports=BackstageModel

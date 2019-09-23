@@ -100,12 +100,13 @@ export default {
 .tophome {
     /* border-bottom: 1px solid #ccc; */
     background-color: white;
+    width: 100%;
     height: 70px;
     box-shadow: 0 1px 3px rgba(26,26,26,.1);
 
 }
-.el-menu-demo {
-    width: 1000px;
+.tophome .el-menu-demo {
+    width: 1000px !important;
     background-color: white;
     margin: 0 auto;
 }
