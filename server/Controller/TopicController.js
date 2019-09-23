@@ -33,13 +33,16 @@ router.post('/conment',(req,res)=>{
     let userarr=[]
     let resul = []
     let topicModel = new TopicModel();
-    topicModel.getallcoment(req.body.tid,(results)=>{
+    topicModel.getallcoment(req.body.tid,req.body.uid,(results)=>{
         // console.log(results)
-        resul.push(results)
+        // resul.push(results)
+        res.json(results)
+        // console.log(results)
+        // console.log(results)
         // console.log(resul)
-        if(results.length){
-            for (let index = 0; index < results.length; index++) {
-                userarr.push(results[index].uid)
+        /* if(results[0].length){
+            for (let index = 0; index < results[0].length; index++) {
+                userarr.push(results[0][index].uid)
             }
             topicModel.getcomserinfo(userarr,(results)=>{
                 resul.push(results)
@@ -48,7 +51,7 @@ router.post('/conment',(req,res)=>{
             })
         }else{
             res.json(resul)
-        }
+        } */
         
         
     })

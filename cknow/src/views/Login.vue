@@ -117,8 +117,7 @@ export default {
                             this.$message("用户账号或密码错误");
                         } else {
                             this.$message("登录成功");
-                            // console.log(response.data.resu[0].uid)
-                            this.$router.push({ name: "home" });
+                            console.log(response.data.resu[0])
                             this.$store.commit("increment");
                             localStorage.setItem(
                                 "token",
@@ -128,6 +127,15 @@ export default {
                                 "uid",
                                 response.data.resu[0].uid
                             );
+                            localStorage.setItem(
+                                "nickname",
+                                response.data.resu[0].nickname
+                            );
+                            localStorage.setItem(
+                                "avatar",
+                                response.data.resu[0].avatar
+                            );
+                            this.$router.push({ name: "home" });
                         }
                     });
                 } else {

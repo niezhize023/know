@@ -39,9 +39,10 @@ class TopicModel extends DbBase{
     }
     
     //获取话题的全部评论
-    getallcoment(tid,callback){
-        let sql = `SELECT uid,content FROM comment WHERE tid=${tid}`;
-        this.mydb.query(sql,(err,result)=>{
+    getallcoment(tid,uid,callback){
+        let lsql = `SELECT * FROM likes WHERE tid=${tid} AND uid=${uid};`
+        let sql = `SELECT * FROM comment WHERE tid=${tid};`;
+        this.mydb.query(sql+lsql,(err,result)=>{
             if(err){
                 console.log(err)
             }else{
@@ -56,7 +57,7 @@ class TopicModel extends DbBase{
             field += (isFirst ? '':',') + '?';
             isFirst = false
         }
-        let sql = `SELECT nickname,avatar FROM users WHERE uid IN(${field})`
+        let sql = `SELECT * FROM users WHERE uid IN(${field})`
         this.mydb.query(sql,userarr,(err,results)=>{
             if(err){
                 console.log(err)

@@ -1,5 +1,5 @@
 const DbBase  = require('./DbBase');
-class TopicModel extends DbBase{
+class CollectModel extends DbBase{
     constructor(){
         super();
         this.table = 'collection';
@@ -28,4 +28,4 @@ class TopicModel extends DbBase{
     }
     
 }
-module.exports = TopicModel;
+module.exports = CollectModel;

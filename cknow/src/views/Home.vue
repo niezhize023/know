@@ -66,7 +66,7 @@ export default {
 </script>
 <style>
 body {
-    background-color: #f6f6f6;
+    background-color: #f6f6f6;  
 }
 .center {
     width: 1000px;
@@ -94,17 +94,26 @@ body {
     line-height: 30px;
     background-color: #f6f6f6;
     margin-right: 10px;
+    /* overflow: scroll; */
+    /* overflow-y: hidden; */
 }
 .cont {
     background-color: white;
     margin-bottom: 10px;
     width: 680px;
+    max-height: 250px;
+    overflow: hidden;
     cursor: pointer;
     padding-left: 20px;
+    padding-right: 20px;
     padding-top: 10px;
     box-sizing: border-box;
     box-shadow: 0 1px 3px rgba(26,26,26,.1);
     /* height: 200px; */
+}
+.cont img{
+    width: 200px;
+    height: 200px;
 }
 a {
     line-height: 30px;
@@ -115,7 +124,7 @@ a {
     font-weight: 600;
 }
 .bottom {
-    width: 400px;
+    width: 200px;
     height: 30px;
     display: flex;
     align-items: center;
@@ -145,10 +154,14 @@ a {
 }
 .a>p+p{
     /* display: flex; */
+    max-height: 210px;
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis;
+    white-space: nowrap; */
 }
 .a>p+p p:nth-child(2){
-    width: 50px;
-    height: 50px;
+    /* width: 50px;
+    height: 50px; */
     box-ordinal-group:1
 }
 .a>p+p p:nth-child(1){

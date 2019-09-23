@@ -18,6 +18,10 @@ app.use('/topic', require('./Controller/TopicController'));
 app.use("/backstage",require("./Controller/BackstageController"))
 app.use("/upload",require("./Controller/UploadController"))
 app.use('/collect', require('./Controller/CollectController'));
+app.use('/comment', require('./Controller/commentController'));
+
+
+
 //静态资源托管
 app.use('/uploads',express.static(__dirname+'/uploads'));
 

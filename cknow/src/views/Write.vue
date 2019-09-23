@@ -61,7 +61,7 @@ export default {
                     this.$message("发布成功");
                     //  this.$router.go(0)
                     this.reload();
-                    this.$router.push({ name: "write" });
+                    // this.$router.push({ name: "write" });
                 } else {
                     console.log(response.data);
                 }
@@ -114,14 +114,17 @@ export default {
     }
 };
 </script>
-<style>
+<style scoped>
 html {
     width: 1000px;
     /* height: 350px; */
     margin: auto;
 }
+.wangeditor{
+    text-align: left;
+}
 .top {
-    width: 100%;
+    width: 1000px;
     height: 100px;
     text-align: center;
     line-height: 80px;
@@ -129,7 +132,10 @@ html {
 #input {
     width: 1000px;
     height: 100px;
-    font-size: 30px;
+    font-size: 24px;
+    padding-left: 20px;
+    box-sizing: border-box;
+    outline: none;
 }
 #wangeditor {
     width: 1000px;
