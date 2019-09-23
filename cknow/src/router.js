@@ -12,7 +12,6 @@ import Login from './views/Login.vue'
 import Write from './views/Write.vue'
 import Backstage from './views/Backstage.vue'
 import Personal from './views/Personal.vue'
-
 import Edit from './views/Editinfo.vue'
 Vue.use(Router)
 

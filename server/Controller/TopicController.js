@@ -13,11 +13,12 @@ router.post('/getonetopic', (req, res) => {
     let topicModel = new TopicModel();
     //获取对应话题的信息
     let rearr = []
-    topicModel.getonetopic(req.body.tid, (results) => {
+    topicModel.getonetopic(req.body.tid, req.body.uid,(results) => {
         // console.log()
         // res.json(results)
-        rearr.push(results[0])
-        topicModel.getpublish(results[0].uid, (results) => {
+        // console.log(results)
+        rearr.push(results)
+        topicModel.getpublish(results[0][0].uid, (results) => {
             // console.log(results)
             rearr.push(results[0])
             res.json(rearr)
@@ -42,7 +43,7 @@ router.post('/conment',(req,res)=>{
             }
             topicModel.getcomserinfo(userarr,(results)=>{
                 resul.push(results)
-                console.log(resul)
+                // console.log(resul)
                 res.json(resul)
             })
         }else{

@@ -103,7 +103,6 @@ console.log(this.editorContent)
     this.editor.customConfig.uploadFileName = 'imgs'
     this.editor.create(); // 创建富文本实例
 
-
   }
  
   

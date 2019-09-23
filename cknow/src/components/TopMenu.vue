@@ -1,5 +1,5 @@
 <template>
-    <div class="top">
+    <div class="tophome">
         <el-menu
             :default-active="activeIndex2"
             class="el-menu-demo"
@@ -9,9 +9,9 @@
             text-color="#000"
             active-text-color="#0084ff"
         >
-            <el-menu-item >
+            <el-menu-item>
                 <router-link to="/">
-                    <img src="../assets/logo.png" alt="">
+                    <img src="../assets/logo.png" alt="" />
                 </router-link>
             </el-menu-item>
             <el-menu-item index="5">
@@ -37,13 +37,15 @@
                     v-model="input"
                 >
                 </el-input>
-         
-
             </el-menu-item>
-   
+
             <el-submenu index="2" class="mycenter">
-                <template slot="title">个人中心</template>
-                <el-menu-item index="2-1" @click="myperson">我的主页</el-menu-item>
+                <template slot="title">
+                    个人中心
+                </template>
+                <el-menu-item index="2-1" @click="myperson"
+                    >我的主页</el-menu-item
+                >
                 <!-- <el-menu-item index="2-2">编辑</el-menu-item> -->
                 <el-menu-item index="2-2">退出</el-menu-item>
             </el-submenu>
@@ -57,40 +59,36 @@ export default {
         return {
             activeIndex: "1",
             activeIndex2: "1",
-            input:'',
-            
+            input: ""
         };
     },
     methods: {
         handleSelect(key, keyPath) {
             console.log(key, keyPath);
-            if(key=='2-2'){
+            if (key == "2-2") {
                 //清空本地缓存
                 localStorage.clear();
                 //跳转到登录界面
                 this.$router.push({ name: "login" });
             }
         },
-         myperson:function(){
-              this.$router.push({name:'personal'})
-
-  },
-  
+        myperson: function() {
+            this.$router.push({ name: "personal" });
+        }
     },
-    created:function(){
-      console.log(this.$route.path)
-      if(this.$route.path=='/recommend'){
-          this.activeIndex = '5'
-          this.activeIndex2 = '5'
-      }else if(this.$route.path=='/follow'){
-          this.activeIndex = '6'
-          this.activeIndex2 = '6'
-      }else if(this.$route.path=='/hot'){
-          this.activeIndex = '7'
-          this.activeIndex2 = '7'
-      }
-  },
- 
+    created: function() {
+        console.log(this.$route.path);
+        if (this.$route.path == "/recommend") {
+            this.activeIndex = "5";
+            this.activeIndex2 = "5";
+        } else if (this.$route.path == "/follow") {
+            this.activeIndex = "6";
+            this.activeIndex2 = "6";
+        } else if (this.$route.path == "/hot") {
+            this.activeIndex = "7";
+            this.activeIndex2 = "7";
+        }
+    }
 };
 </script>
 
@@ -99,34 +97,36 @@ export default {
     margin: 0px;
     padding: 0px;
 }
-.top{
-    border-bottom: 1px solid #ccc;
+.tophome {
+    /* border-bottom: 1px solid #ccc; */
     background-color: white;
     height: 70px;
+    box-shadow: 0 1px 3px rgba(26,26,26,.1);
+
 }
 .el-menu-demo {
     width: 1000px;
     background-color: white;
     margin: 0 auto;
 }
-.el-menu-item:hover{
+.el-menu-item:hover {
     background-color: white !important;
 }
-.el-menu.el-menu--horizontal{
-    border: none
+.el-menu.el-menu--horizontal {
+    border: none;
 }
-.mycenter{
+.mycenter {
     position: absolute;
     right: 84px;
     top: 0;
 }
-.search{
+.search {
     width: 400px;
 }
-a{
+a {
     text-decoration: none;
 }
-.a{
+.a {
     height: 60px;
     /* line-height: 60px; */
 }

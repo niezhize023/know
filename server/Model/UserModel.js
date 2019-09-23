@@ -101,7 +101,16 @@ class UserModel extends DbBase {
             cb(ob);
         })
     }
-    
+    getuserinfo(uid,callback){
+        let sql = `SELECT nickname,avatar FROM users WHERE uid=${uid}`
+        this.mydb.query(sql,(err,results)=>{
+            if(err){
+                console.log(err)
+            }else{
+                callback(results)
+            }
+        })
+    }
 
 }
 

@@ -5,7 +5,7 @@
             <el-container>
                 <el-main id="el-main">
                     <div
-                        v-for="(t, index) in topiclist"
+                        v-for="t in topiclist"
                         :key="t.tid"
                         class="cont"
                     >
@@ -14,28 +14,13 @@
                             class="a"
                         >
                             <p class="title">{{ t.title }}</p>
-                            <p>{{ t.content }}</p>
+                            <p v-html="t.content"></p>
                             <!-- <p>{{t.time}}</p> -->
                         </router-link>
-                        <div class="bottom">
-                            <span class="el-icon-thumb">赞同</span>
-                            <span class="el-icon-chat-dot-round">评论</span>
-                            <span
-                                class="el-icon-star-on"
-                                :class="[t.tid==iscollect?'collct':'']"
-                                @click="collect(index)"
-                                >收藏</span
-                            >
-                        </div>
                     </div>
                 </el-main>
                 <el-aside width="300px">
                     <div class="userinfo">
-                        <img
-                            src="../assets/logo.png"
-                            alt=""
-                            @click="changeavatar"
-                        />
                         <span class="nickname">鱼戏断桥边</span>
                     </div>
                 </el-aside>
@@ -51,58 +36,11 @@ export default {
     data: function() {
         return {
             topiclist: [],
-            collectflag:false,
-            iscollect:''
         };
     },
     methods: {
-
-        changeavatar: function() {
-            this.$router.push({ name: "avatar" });
-        },
-        collect: function(index) {
-            this.collectflag = !this.collectflag
-            if(this.collectflag){
-                this.axios
-                .post("/collect/addcollect", {
-                    uid: localStorage.getItem("uid"),
-                    tid: this.topiclist[index].tid
-                })
-                .then(response => {
-                    console.log(response);
-                    if (response.data.code == 1) {
-                        this.iscollect = this.topiclist[index].tid
-                        this.$message({
-                            message: "收藏成功",
-                            type: "success"
-                        });
-                    }
-                })
-                .catch(function(error) {
-                    console.log(error);
-                });
-            }else{
-                //取消收藏
-                this.axios
-                .post("/collect/delcollect", {
-                    uid: localStorage.getItem("uid"),
-                    tid: this.topiclist[index].tid
-                })
-                .then(response => {
-                    console.log(response);
-                    if (response.data.code == 1) {
-                        this.iscollect = ''
-                        this.$message({
-                            message: "取消收藏成功",
-                            type: "success"
-                        });
-                    }
-                })
-                .catch(function(error) {
-                    console.log(error);
-                });
-            }
-        }
+    
+        
     },
     created: function() {
         this.$store.state.status = localStorage.getItem("token");
@@ -137,13 +75,20 @@ body {
 .center .el-aside {
     line-height: 30px;
     text-align: left;
+    height: 200px;
     background-color: white;
+    box-shadow: 0 1px 3px rgba(26,26,26,.1);
 }
 .el-container {
     margin-top: 10px;
+    background-color: #F6F6F6;
+    /* padding-left: 30px; */
+    box-sizing: border-box;
 }
-.center .el-container .el-main {
+.center .el-container #el-main {
     width: 700px;
+    padding-left: 30px;
+    box-sizing: border-box;
     padding: 0;
     text-align: left;
     line-height: 30px;
@@ -154,7 +99,11 @@ body {
     background-color: white;
     margin-bottom: 10px;
     width: 680px;
-    cursor: pointer
+    cursor: pointer;
+    padding-left: 20px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(26,26,26,.1);
     /* height: 200px; */
 }
 a {
@@ -183,6 +132,7 @@ a {
     width: 50px;
     height: 50px;
     border: 1px solid #ccc;
+    flex-shrink: 0;
     border-radius: 50%;
 }
 .nickname {
@@ -192,5 +142,17 @@ a {
     background-color: blue;
     color: white;
     
+}
+.a>p+p{
+    /* display: flex; */
+}
+.a>p+p p:nth-child(2){
+    width: 50px;
+    height: 50px;
+    box-ordinal-group:1
+}
+.a>p+p p:nth-child(1){
+    box-ordinal-group:2;
+    flex-shrink: 0;
 }
 </style>

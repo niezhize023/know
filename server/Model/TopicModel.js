@@ -26,15 +26,10 @@ class TopicModel extends DbBase{
             }
         })
     }
-    getonetopic(tid,callback){
-<<<<<<< Updated upstream
+    getonetopic(tid,uid,callback){
+        let csql = `SELECT * FROM collection WHERE tid=${tid} AND uid=${uid};`
         let sql = `SELECT * FROM ${this.table} WHERE tid=${tid};`;
-        let resql = `SELECT * FROM comment WHERE tid=${tid};`;
-        this.mydb.query(sql+resql,(err,result)=>{
-=======
-        let sql = `SELECT * FROM ${this.table} WHERE tid=${tid}`;
-        this.mydb.query(sql,(err,result)=>{
->>>>>>> Stashed changes
+        this.mydb.query(sql+csql,(err,result)=>{
             if(err){
                 console.log(err);
             }else{
@@ -61,11 +56,7 @@ class TopicModel extends DbBase{
             field += (isFirst ? '':',') + '?';
             isFirst = false
         }
-<<<<<<< Updated upstream
-        let sql = `SELECT nickname, avatar FROM users WHERE uid IN (${field})`
-=======
         let sql = `SELECT nickname,avatar FROM users WHERE uid IN(${field})`
->>>>>>> Stashed changes
         this.mydb.query(sql,userarr,(err,results)=>{
             if(err){
                 console.log(err)

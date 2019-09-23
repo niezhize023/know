@@ -51,6 +51,12 @@ router.post("/write",(req,res)=>{
     })
 })
 
-
+router.post("/getuserinfo",(req,res)=>{
+    let userModel=new UserModel()
+    userModel.getuserinfo(req.body.uid,(result)=>{
+        res.json(result)
+    })
+    
+})
 
 module.exports=router

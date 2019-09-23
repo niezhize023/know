@@ -9,7 +9,7 @@
             </el-carousel>
             <div class="person">
                 <div class="introduction">
-                    <div class="picture">
+                    <div class="pictures">
                         <el-upload
                             class="avatar-uploader"
                             action="http://localhost:81/upload/"
@@ -136,7 +136,7 @@ body {
     /* height: 1000px; */
     /* background-color: white; */
     position: relative;
-    box-shadow: 0 1px 3px rgba(26,26,26,.1);
+    /* box-shadow: 0 1px 3px rgba(26,26,26,.1); */
 }
 .person {
     width: 100%;
@@ -145,7 +145,7 @@ body {
     position: relative;
 }
 
-.picture {
+.introduction .pictures {
     position: absolute;
     top: -40px;
     width: 150px;
@@ -153,11 +153,11 @@ body {
     /* background-color: blue; */
     z-index: 9999;
 }
-.picture .avatar-uploader .el-upload{
+.pictures .avatar-uploader .el-upload{
     border: none;
     position: relative;
 }
-.picture .avatar-uploader .el-icon-plus:before {
+.pictures .avatar-uploader .el-icon-plus:before {
     content: "\E6D9";
     display: block;
     position: absolute;
