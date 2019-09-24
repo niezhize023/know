@@ -80,6 +80,25 @@ router.post("/getcollectiontopic",(req,res)=>{
     })
    
     
+//修改用户信息
+router.post("/editinfo",(req,res)=>{
+    let userModel=new UserModel();
+    // console.log(req.body)
+    userModel.edituserinfo(req.body.uid,req.body.imageUrl,req.body.live,req.body.gender,req.body.phone,req.body.introduction,req.body.nickname,(result)=>{
+        // console.log(result)
+        res.json(req.body)
+    })
+})
+
+//查询用户
+router.get("/selectuser",(req,res)=>{
+    let userModel=new UserModel();
+    // console.log(req.query.uid)
+    userModel.selectuser(req.query.uid,(result)=>{
+        res.json(result)
+    })
+})
+
 
 
 })

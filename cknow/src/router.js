@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Recommend from './views/Recommend.vue'
-import Follow from './views/Follow.vue'
 import Hot from './views/Hot.vue'
 import Topicinfo from './views/Topicinfo.vue'
 import Avatar from './views/Avatar.vue'
@@ -71,10 +70,6 @@ export default new Router({
     {
       path: '/recommend',
       component: Recommend
-    },
-    {
-      path: '/follow',
-      component: Follow
     },
     {
       path: '/topicinfo',

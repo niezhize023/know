@@ -19,11 +19,6 @@
                     推荐
                 </router-link>
             </el-menu-item>
-            <el-menu-item index="6">
-                <router-link to="/follow" class="a">
-                    关注
-                </router-link>
-            </el-menu-item>
             <el-menu-item index="7">
                 <router-link to="/hot" class="a">
                     热榜

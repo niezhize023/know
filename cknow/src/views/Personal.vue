@@ -64,12 +64,7 @@
 
             </div>
             <div class="pre-right">
-                <div class="writeclick" @click="writewz">
-                    <i class="el-icon-edit-outline"></i>点击写文章
-                </div>
-                <div class="pre-rightbottom">
-
-                </div>
+               <aside-mlist></aside-mlist>
             </div>
         </div>
     </div>
@@ -163,13 +158,16 @@ body {
 .middle {
     width: 1000px;
     margin: 0 auto;
-
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
     /* height: auto; */
     background-color: white;
     position: relative;
 }
 #center-top {
     margin-top: 2px;
+    text-align: left;
 }
 .person {
     width: 100%;
@@ -206,19 +204,21 @@ body {
 .pre-left {
     width: 68%;
     /* height: 300px; */
+    height: 300px;
+    padding-left: 10px;
+    box-sizing: border-box;
     /* background-color: #a82aa1; */
     float: left;
+    box-shadow: 0 1px 3px rgba(26, 26, 26, 0.1);
 }
 .pre-right {
-    width: 25%;
-    height: 300px;
+    width: 26%;
+    /* height: 300px; */
     float: left;
-    margin-left: 10px;
+    margin-left: 20px;
 }
-.pre-rightbottom{
-    /* background-color: red; */
-    height: 200px;
-    border: 1px solid #409EFF;
+.pre-right .el-aside{
+    background-color: white;
 }
 .middle::after{
     content: '';

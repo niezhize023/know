@@ -21,7 +21,7 @@ class UserModel extends DbBase {
                 ob.resu = results;
 
             }
-            console.log(ob)
+            // console.log(ob)
 
             cb(ob);
         })
@@ -57,7 +57,7 @@ class UserModel extends DbBase {
                 ob.resu = results;
 
             }
-            console.log(ob)
+            // console.log(ob)
 
             cb(ob);
         })
@@ -85,7 +85,7 @@ class UserModel extends DbBase {
     checkuser(name,cb){
         let sql = 'select * from users where nickname=?'
         this.mydb.query(sql, [name], (err, results) => {
-            console.log(results[0])
+            // console.log(results[0])
             
             let ob = {
                 code: 1,
@@ -170,6 +170,40 @@ class UserModel extends DbBase {
             }
         })
     }
+    edituserinfo(uid,imageurl,live,gender,phone,introduction,nickname,callback){
+        let sql = `UPDATE users SET avatar='${imageurl}',live='${live}',gender='${gender}',phone='${phone}',introduction='${introduction}',nickname='${nickname}' WHERE uid=${uid};`
+        let comsql = `UPDATE comment SET avatar='${imageurl}',nickname='${nickname}' WHERE uid=${uid}`
+        this.mydb.query(sql+comsql,(err,results)=>{
+            if(err){
+                console.log(err)
+            }else{
+                callback(results)
+            }
+        })
+    }
+    //查询用户
+    selectuser(uid,callback){
+        let sql = `SELECT * FROM users WHERE uid=${uid}`;
+        this.mydb.query(sql,(err,results)=>{
+            if(err){
+                console.log(results)
+            }else{
+                callback(results)
+            }
+        })
+    }
+    //更新评论的用户信息
+    /* updatacomtinfo(uid,nickname,imageurl,callback){
+        
+        this.mydb.query(sql,(err,results)=>{
+            if(err){
+                console.log(results)
+            }else{
+                callback(results)
+            }
+        })
+    } */
+    
 }
 
 

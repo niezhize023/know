@@ -26,6 +26,10 @@
                         <p class="write">收藏数</p>
                         <p class="num">{{ topicinfo.collection }}</p>
                     </div>
+                    <div class="public ">
+                        <p class="write">评论数</p>
+                        <p class="num">{{ topicinfo.comment }}</p>
+                    </div>  
                     
                 </div>
             </div>
@@ -187,7 +191,8 @@ export default {
                 uid: localStorage.getItem("uid"),
                 time: publishtime,
                 avatar:localStorage.getItem("avatar"),
-                nickname:localStorage.getItem("nickname")
+                nickname:localStorage.getItem("nickname"),
+                comment:this.topicinfo.comment+1
             };
             this.axios({
                 method: "post",
