@@ -60,5 +60,40 @@ router.post("/getuserinfo",(req,res)=>{
     
 })
 
+router.post("/getcollection",(req,res)=>{
+    console.log(req.body.uid)
+    let userModel=new UserModel()
+    userModel.getcollection(req.body.uid,(result)=>{
+        // console.log(result)
+        res.json(result)
+    })
+    
+})
 
+router.post("/getcollectiontopic",(req,res)=>{
+    console.log(req.body.data.tid)
+    var str=req.body.data.tid
+    let userModel=new UserModel()
+    userModel.getcollectioninfo(str,(result)=>{
+        // console.log(result)
+        res.json(result)
+    })
+   
+    
+
+
+})
+
+router.post("/getarticle",(req,res)=>{
+    var uid=req.body.data.uid
+    let userModel=new UserModel()
+    userModel.getarticleinfo(uid,(result)=>{
+        // console.log(result)
+        res.json(result)
+    })
+   
+    
+
+
+})
 module.exports=router

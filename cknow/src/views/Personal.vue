@@ -4,7 +4,7 @@
         <div class="middle" id="center-top">
             <el-carousel indicator-position="none" height="200px">
                 <el-carousel-item v-for="item in 4" :key="item">
-                    <!-- <h3>{{ item }}</h3> -->
+                
                 </el-carousel-item>
             </el-carousel>
             <div class="person">
@@ -20,14 +20,48 @@
 
             <div class="pre-left">
                 <el-tabs v-model="activeName" @tab-click="handleClick">
-                    <el-tab-pane label="我的收藏" name="first"
-                        >我的收藏</el-tab-pane
+                    <el-tab-pane label="我的收藏" name="first" >
+                        <el-main id="el-main">
+                    <div
+                        v-for="t in objectlist"
+                        :key="t.tid"
+                        class="cont"
                     >
-                    <el-tab-pane label="我的赞同" name="second"
-                        >配置管理</el-tab-pane
+                        <router-link
+                            :to="{ path: '/topicinfo', query: { tid: t.tid } }"
+                            class="a"
+                        >
+                            <p class="title">{{ t.title }}</p>
+                            
+                            <p v-html="t.content"></p>
+                         
+                        </router-link>
+                    </div>
+                </el-main>             
+                        </el-tab-pane
                     >
-                  
+                    <el-tab-pane label="我的文章" name="second"
+                        >
+                         <el-main id="el-main">
+                    <div
+                        v-for="t in articlelist"
+                        :key="t.tid"
+                        class="cont"
+                    >
+                        <router-link
+                            :to="{ path: '/topicinfo', query: { tid: t.tid } }"
+                            class="a"
+                        >
+                            <p class="title">{{ t.title }}</p>
+                            <p v-html="t.content"></p>
+                        </router-link>
+                    </div>
+                </el-main> 
+                        </el-tab-pane>
                 </el-tabs>
+
+
+
             </div>
             <div class="pre-right">
                 <div class="writeclick" @click="writewz">
@@ -45,38 +79,84 @@ export default {
     data() {
         return {
             activeName: "first",
-            userinfo:[]
+            userinfo:[],
+            tid:[],
+            objectlist:[],
+            articlelist:[]    
         };
     },
     methods: {
         handleClick(tab, event) {
-            console.log(tab, event);
+            // if(tab._uid=="35"){
+                     this.axios.post("/user/getarticle", {
+                data:{uid: localStorage.getItem("uid"),}
+            })
+            .then((response)=> {
+                this.articlelist=response.data
+            })
+            // }
         },
         writewz() {
             this.$router.push({ name: "write" });
         },
         edit() {
             this.$router.push({ name: "editinfo" });
+        },
+        getcoll(str){
+   this.axios.post("/user/getcollectiontopic", {
+                data:{tid:str}
+            })
+            .then((response)=> {
+                // console.log(response.data);
+                this.objectlist=response.data
+            })
+   
         }
     },
     created: function() {
-        console.log(localStorage.getItem("uid"));
+        // console.log(localStorage.getItem("uid"));
         this.axios.post("/user/getuserinfo", {
                 uid: localStorage.getItem("uid"),
             })
             .then((response)=> {
-                console.log(response);
+                // console.log(response);
                 this.userinfo = response.data[0]
             })
-            .catch(function(error) {
-                console.log(error);
-            });
+           
 
-            console.log(this.userinfo)
-    }
+             this.axios.post("/user/getcollection", {
+                uid: localStorage.getItem("uid"),
+            })
+            .then((response)=> {
+                // console.log(response);
+                this.tid = response.data.resu
+                // console.log(this.tid)
+                var str=this.tid.join(",")
+                // console.log(str)
+                    this.getcoll(str)
+                    
+
+            })
+            this.handleClick()
+           
+    },
+    
+    
+      
 };
 </script>
 <style>
+
+.pre-left .title{
+    text-align: left;
+    widows: 100%;
+}
+.pre-left .cont img{
+    float: left;
+    width: 200px;
+
+}
+
 body {
     background-color: #f6f6f6;
 }
@@ -125,7 +205,7 @@ body {
 }
 .pre-left {
     width: 74%;
-    height: 300px;
+    /* height: 300px; */
     /* background-color: #a82aa1; */
     float: left;
 }
@@ -145,7 +225,9 @@ body {
     display: block;
     clear: both;
 }
-
+#pane-first{
+    height: 1000px;
+}
 .writeclick {
     box-sizing: border-box;
     width: 100%;

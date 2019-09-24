@@ -113,6 +113,62 @@ class UserModel extends DbBase {
             }
         })
     }
+    getcollection(uid,cb){
+        let sql = `SELECT tid FROM collection WHERE uid=${uid}`
+        
+        // let newsql=`select * from topic where tid`
+        this.mydb.query(sql,(err,results)=>{
+        //    console.log(results)
+        //    console.log(results.length)
+           var mycollectionarr=[]
+           for(var i=0;i<results.length;i++){
+        //    console.log(results[i].tid)
+           mycollectionarr.push(results[i].tid)
+           } 
+        //    console.log(mycollectionarr)
+        //    var str=mycollectionarr.join(",")
+        //    console.log(str)
+        //    let mysql = 'SELECT * FROM topic where tid in (str)'
+            let ob = {
+                 code: 1,
+                 resu: []
+             };
+ 
+             if (results[0]) {
+                  ob.resu = mycollectionarr;
+                 //  console.log(ob)
+             } else {
+                 ob.code = -1;
+               
+                 // console.log(ob)
+             }
+             cb(ob);
+         }) 
+       
+
+    }
+    getcollectioninfo(str,cb){
+        // console.log(str)
+        let sql = `SELECT * FROM topic  WHERE tid in (${str})`
+        this.mydb.query(sql,(err,results)=>{
+            if(err){
+                console.log(err)
+            }else{
+                cb(results)
+            }
+        })
+    }
+    getarticleinfo(uid,cb){
+        // console.log(str)
+        let sql = `SELECT * FROM topic  WHERE uid in (${uid})`
+        this.mydb.query(sql,(err,results)=>{
+            if(err){
+                console.log(err)
+            }else{
+                cb(results)
+            }
+        })
+    }
 }
 
 
