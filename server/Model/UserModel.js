@@ -116,7 +116,7 @@ class UserModel extends DbBase {
     getcollection(uid,cb){
         let sql = `SELECT tid FROM collection WHERE uid=${uid}`
         this.mydb.query(sql,(err,results)=>{
-           console.log(results.length)
+        //    console.log(results.length)
            var mycollectionarr=[]
            for(var i=0;i<results.length;i++){
         //    console.log(results[i].tid)

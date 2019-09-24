@@ -34,9 +34,7 @@
       <el-table-column fixed prop="uid" label="用户" width="50"></el-table-column>
      
       <el-table-column prop="title" label="标题" width="180"></el-table-column>
-      <el-table-column prop="content" label="内容" width="500"></el-table-column>
-
-      <el-table-column prop="like" label="点赞数" width="70"></el-table-column>
+      <el-table-column prop="content" label="内容" width="570"></el-table-column>
       <el-table-column prop="comment" label="评论数" width="70"></el-table-column>
       <el-table-column prop="collection" label="收藏数" width="70"></el-table-column>
       <el-table-column prop="time" label="发布时间" width="180"></el-table-column>
@@ -67,7 +65,6 @@ export default {
           title: "",
           content: [],
           imgs: "",
-          like: "",
           comment: "",
           collection: "",
           time: "",

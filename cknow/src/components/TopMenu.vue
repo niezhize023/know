@@ -159,7 +159,7 @@ border-radius: 0
 
 
 }
-::-webkit-scrollbar {
+.showlist::-webkit-scrollbar {
 /*隐藏滚轮*/
 display: none;
 }

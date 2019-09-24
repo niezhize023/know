@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <el-aside width="300px">
+    <div class="side-mlist">
+        <el-aside width="300px" class="scroll">
             <div class="right-top-list">
                 <div class="GlobalWrite-nav">
                     <router-link :to="{ path: '/write' }">
@@ -62,12 +62,41 @@
 
 <script>
 export default {
-    
+    data:function(){
+        return{
+            left:'',
+            top:''
+        }
+    },
+    mounted() {
+        var topnavigator = document.querySelector(".scroll");
+        this.top = topnavigator.offsetTop
+        this.left = topnavigator.offsetLeft
+        window.onscroll = (e) =>{
+            console.log(e.wheelDelta);
+            console.log(e.detail)
+            var top = window.pageYOffset || document.documentElement.scrollTop;
+            /* console.log(top<this.top)
+            console.log(top) */
+            if (top > topnavigator.offsetTop) {
+                topnavigator.style.position = "fixed";
+                topnavigator.style.left = this.left+"px";
+            } else if(top<this.top){
+                topnavigator.style.position = "relative";
+                topnavigator.style.left = 0;
+            }
+        };
+    },
 };
 </script>
 
 <style scoped>
-.el-aside{
+.scroll{
+    position: relative;
+    left: 0;
+    top: 0;
+}
+.el-aside {
     line-height: 26px;
     text-align: left;
 }
@@ -110,7 +139,7 @@ export default {
     justify-content: center;
     text-align: center;
 }
-.GlobalSideBar-categoryList .list p{
+.GlobalSideBar-categoryList .list p {
     font-size: 15px;
     color: #8590a6;
 }
@@ -144,12 +173,11 @@ export default {
 .GlobalSideBar-categoryList .list:nth-child(5):hover p {
     color: rgb(84, 120, 240);
 }
-.Footer{
+.Footer {
     margin-top: 10px;
     height: 280px;
-    
 }
-.Footer p{
+.Footer p {
     font-size: 14px;
     line-height: 2;
     color: #8590a6;

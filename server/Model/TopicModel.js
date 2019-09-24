@@ -16,7 +16,7 @@ class TopicModel extends DbBase{
         })
     }
     gettopicbyhot(callback){
-        let sql = `SELECT * FROM ${this.table} WHERE comment>10`
+        let sql = `SELECT * FROM ${this.table} WHERE comment>=2`
         this.mydb.query(sql,(err,result)=>{
             if(err){
                 console.log(err)
@@ -27,7 +27,7 @@ class TopicModel extends DbBase{
         })
     }
     gettopicbyrec(callback){
-        let sql = `SELECT * FROM ${this.table} WHERE collection>10`
+        let sql = `SELECT * FROM ${this.table} WHERE collection>=2`
         this.mydb.query(sql,(err,result)=>{
             if(err){
                 console.log(err)
