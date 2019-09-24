@@ -15,6 +15,29 @@ class TopicModel extends DbBase{
             }
         })
     }
+    gettopicbyhot(callback){
+        let sql = `SELECT * FROM ${this.table} WHERE comment>10`
+        this.mydb.query(sql,(err,result)=>{
+            if(err){
+                console.log(err)
+                callback(result)
+            }else{
+                callback(result)
+            }
+        })
+    }
+    gettopicbyrec(callback){
+        let sql = `SELECT * FROM ${this.table} WHERE collection>10`
+        this.mydb.query(sql,(err,result)=>{
+            if(err){
+                console.log(err)
+                callback(result)
+            }else{
+                callback(result)
+            }
+        })
+    }
+
     getpublish(uid,callback){
         let sql = `SELECT nickname,avatar FROM users WHERE uid=${uid}`
         this.mydb.query(sql,(err,result)=>{
