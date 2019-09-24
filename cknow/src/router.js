@@ -14,6 +14,8 @@ import Backstage from './views/Backstage.vue'
 import Personal from './views/Personal.vue'
 import Edit from './views/Editinfo.vue'
 import Backstageseach from './views/Backstageseach.vue'
+import Newsearsh from './views/Newsearsh.vue'
+
 
 
 Vue.use(Router)
@@ -86,6 +88,12 @@ export default new Router({
       path: '/backstageseach',
       name: "backstageseach",
       component: Backstageseach
+    },
+    
+    {
+      path: '/newsearsh',
+      name: "newsearsh",
+      component: Newsearsh
     },
     /* {
       path: '/about',

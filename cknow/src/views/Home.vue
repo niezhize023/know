@@ -54,7 +54,7 @@ export default {
             this.axios
                 .get("/topic/gettopic")
                 .then(response => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     this.topiclist = response.data;
                 })
                 .catch(function(error) {

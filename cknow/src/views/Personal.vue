@@ -122,8 +122,6 @@ export default {
                 // console.log(response);
                 this.userinfo = response.data[0]
             })
-           
-
              this.axios.post("/user/getcollection", {
                 uid: localStorage.getItem("uid"),
             })
@@ -151,6 +149,8 @@ export default {
     text-align: left;
     widows: 100%;
 }
+
+
 .pre-left .cont img{
     float: left;
     width: 200px;
@@ -204,7 +204,7 @@ body {
     right: 20px;
 }
 .pre-left {
-    width: 74%;
+    width: 68%;
     /* height: 300px; */
     /* background-color: #a82aa1; */
     float: left;
@@ -255,7 +255,7 @@ body {
     background-size: 100% 100%;
 }
 .el-carousel__item:nth-child(2n + 1) {
-    /* background-image: url("http://pic.58pic.com/58pic/15/16/27/28E58PICUud_1024.jpg"); */
+    background-image: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569297908164&di=42be50b44f7c082d139a930a5d2af978&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F14%2F29%2F47e58PICQUR_1024.jpg");
     background-size: 100% 100%;
 }
 </style>

@@ -127,6 +127,14 @@ export default {
             iscollecttext: "收藏"
         };
     },
+    watch: {
+        "$route.query.tid":function(){
+            // console.log(this.tid)
+            this.reload();
+         
+            // this.$router.go(0);
+        }
+    },
     mounted() {
         this.editor = new E(this.$refs.editorElem);
         // 编辑器的事件，每次改变会获取其html内容
@@ -266,12 +274,14 @@ export default {
         }
     },
     created: function() {
+        console.log(this.tid)
         var that = this;
         function getUserAccount() {
             // console.log(that.$route.query.tid)
             return that.axios.post("/topic/getonetopic", {
                 tid: that.$route.query.tid,
                 uid: localStorage.getItem("uid")
+                
             });
         }
 
@@ -298,7 +308,8 @@ export default {
                 console.log(perms); */
             })
         );
-    }
+    },
+  
 };
 </script>
 

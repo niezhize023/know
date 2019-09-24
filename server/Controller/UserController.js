@@ -91,9 +91,15 @@ router.post("/getarticle",(req,res)=>{
         // console.log(result)
         res.json(result)
     })
-   
-    
+})
 
+    router.post("/getmysearsh",(req,res)=>{
+        var val=req.body.inputvalue
+        console.log(val)
+        let userModel=new UserModel()
+        userModel.getmysearshinfo(val,(result)=>{
+            res.json(result)
+        })
 
 })
 module.exports=router

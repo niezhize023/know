@@ -35,8 +35,23 @@
                     placeholder="请输入内容"
                     prefix-icon="el-icon-search"
                     v-model="input"
+             
                 >
                 </el-input>
+                <!-- <el-button type="primary" icon="el-icon-search" class="mysearsh" @click="mysearshclick"></el-button> -->
+                    <div :class="isgange?'showlist':''">
+                        <p v-for="item in searchlist" :key="item.tid">
+
+                            <router-link
+                            :to="{ path: '/topicinfo', query: { tid: item.tid } }"
+                            class="a"
+                            >
+                            <span class="title">{{ item.title }}</span>
+                            <!-- <p v-html="item.content"></p> -->
+                            <!-- <p>{{t.time}}</p> -->
+                            </router-link>
+                        </p>
+                    </div>
             </el-menu-item>
 
             <el-submenu index="2" class="mycenter">
@@ -59,12 +74,50 @@ export default {
         return {
             activeIndex: "1",
             activeIndex2: "1",
-            input: ""
+            input: "",
+            searchlist:[],
+            isgange:false
         };
     },
+     watch: {
+            input:function(){
+
+            if(this.input){
+              this.axios.post("/user/getmysearsh", {
+                inputvalue:this.input
+            })
+            .then((response)=> {
+             this.searchlist=response.data
+             if(response.data.length){
+                this.isgange = true
+                 
+             }
+            //   console.log("list:"+this.searchlist)
+            })
+        
+            }else{
+                // console.log("空")
+                this.isgange = false
+
+                this.searchlist=[]
+            }
+        }
+
+        },
     methods: {
+    //    outfocus(){
+        //    this.isgange = false
+            // this.searchlist=[]
+            // this.input=''
+    //    },
+        mysearshclick(){
+            // console.log(this.input)
+            var params={val:this.input}
+            this.$router.push({name:'newsearsh',params:params})
+           
+        },
         handleSelect(key, keyPath) {
-            console.log(key, keyPath);
+            // console.log(key, keyPath);
             if (key == "2-2") {
                 //清空本地缓存
                 localStorage.clear();
@@ -77,7 +130,7 @@ export default {
         }
     },
     created: function() {
-        console.log(this.$route.path);
+        // console.log(this.$route.path);
         if (this.$route.path == "/recommend") {
             this.activeIndex = "5";
             this.activeIndex2 = "5";
@@ -93,6 +146,46 @@ export default {
 </script>
 
 <style>
+
+.search .el-input__inner{
+border-radius: 0
+
+}
+.showlist{
+    width: 89.5%;
+    height: 200px;
+    background-color: white;
+    position: absolute;
+    z-index: 20;
+    top: 50px;
+    border: 1px solid #ccc;
+    overflow: scroll;
+    overflow-x: hidden;
+
+
+}
+::-webkit-scrollbar {
+/*隐藏滚轮*/
+display: none;
+}
+.showlist p{
+  text-align: left;
+  line-height: 26px;
+}
+.showlist p span{
+    font-size: 14px;
+    font-weight: normal;
+  
+}
+.mysearsh{
+    width: 46px;
+    height: 37px;
+    line-height: 37px;
+    margin: 0 10px;
+    background-color: #fff;
+    padding: 0;
+    padding-left: 5px;
+}
 * {
     margin: 0px;
     padding: 0px;

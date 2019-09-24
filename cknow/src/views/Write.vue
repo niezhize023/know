@@ -40,7 +40,7 @@ export default {
     },
     methods: {
         signout: function() {
-            this.$router.push({ name: "login" });
+            this.$router.push({ name: "personal" });
         },
         release: function() {
             var time = new Date();
